@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../modules/auth/AuthContext";
 import { useEffect, useState } from "react";
 
-export function Navbar() {
+export function AppNavbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
