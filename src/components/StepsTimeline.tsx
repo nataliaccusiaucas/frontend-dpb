@@ -43,7 +43,6 @@ export function StepsTimeline() {
     <section className="bg-white text-[#004F62] py-24 px-6">
       <div className="max-w-4xl mx-auto">
 
-        {/* HEADER */}
         <div className="text-center mb-16">
           <p className="font-body text-sm uppercase tracking-[0.25em] text-[#004F62]/60 mb-3">
             PROCESO SIMPLE Y TRANSPARENTE
@@ -59,7 +58,6 @@ export function StepsTimeline() {
           </p>
         </div>
 
-        {/* TIMELINE */}
         <div className="timeline relative ml-8">
           <div className="timeline-line"></div>
 
