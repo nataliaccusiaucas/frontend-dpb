@@ -1,11 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom"
+import { AppNavbar } from "../components/AppNavbar"
 
 export function PrivateLayout() {
   return (
-    <main className="min-h-screen bg-[#F8FAFC] text-black p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-[#070707]">
+      <AppNavbar />
+      <div className="pt-24 px-6">
         <Outlet />
       </div>
-    </main>
-  );
+    </div>
+  )
 }

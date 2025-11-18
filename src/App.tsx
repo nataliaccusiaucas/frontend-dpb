@@ -1,7 +1,6 @@
 import { Toaster } from './components/ui/Toaster'
 import { AppRoutes } from './routes'
 import { useLocation } from "react-router-dom"
-import { AppNavbar } from './components/AppNavbar'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -18,11 +17,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-
-      {!isAuthPage && (
-        <AppNavbar />
-      )}
-
+      
       <main className={`flex-grow ${isPrivate ? "pt-24" : ""}`}>
         <AppRoutes />
       </main>

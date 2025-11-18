@@ -13,9 +13,7 @@ export function AppNavbar() {
     location.pathname === "/login" || location.pathname === "/register";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -44,7 +42,7 @@ export function AppNavbar() {
         {user && (
           <nav className="flex items-center gap-6 font-body text-sm">
             <NavLink
-              to="/"
+              to="/dashboard"
               className={({ isActive }) =>
                 isActive
                   ? "text-[#00E8FF] drop-shadow-[0_0_6px_#00E8FF]"
@@ -63,6 +61,17 @@ export function AppNavbar() {
               }
             >
               Offers
+            </NavLink>
+
+            <NavLink
+              to="/jobrequests"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#00E8FF] drop-shadow-[0_0_6px_#00E8FF]"
+                  : "text-gray-300 hover:text-[#00E8FF] transition"
+              }
+            >
+              Requests
             </NavLink>
           </nav>
         )}

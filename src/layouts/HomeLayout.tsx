@@ -1,9 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom"
+import { AppNavbar } from "../components/AppNavbar"
 
 export function HomeLayout() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <Outlet />
-    </main>
-  );
+    <div className="min-h-screen bg-[#070707]">
+      <AppNavbar />
+      <div className="pt-24">
+        <Outlet />
+      </div>
+    </div>
+  )
 }
