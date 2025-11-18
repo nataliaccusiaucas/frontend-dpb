@@ -2,7 +2,7 @@ import api from "../../lib/axios"
 import type { FreelancerProfile } from "./types"
 
 export async function getFreelancerProfile(freelancerId: string): Promise<FreelancerProfile> {
-  const { data } = await api.get(`/api/freelancers/${freelancerId}/profile`)
+  const { data } = await api.get(`/freelancers/${freelancerId}/profile`)
   return data
 }
 
@@ -16,6 +16,6 @@ export async function updateFreelancerProfile(
     location?: string
   }
 ): Promise<FreelancerProfile> {
-  const { data } = await api.put(`/api/freelancers/${freelancerId}/profile`, input)
+  const { data } = await api.put(`/freelancers/${freelancerId}/profile`, input)
   return data
 }
