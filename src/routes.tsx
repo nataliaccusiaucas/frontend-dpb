@@ -20,6 +20,12 @@ import { OfferForm } from "./modules/offers/OfferForm"
 
 import { FreelancerProfileView } from "./modules/freelancerprofile/FreelancerProfileView"
 import { FreelancerProfileEdit } from "./modules/freelancerprofile/FreelancerProfileEdit"
+import { ReviewForm } from "./modules/reviews/ReviewForm"
+import { ReviewsList } from "./modules/reviews/ReviewLists"
+
+import { CommissionsList } from "./modules/commissions/CommissionsList"
+import { InvoiceList } from "./modules/commissions/InvoiceList"
+
 
 import { Dashboard } from "./pages/Dashboard"
 
@@ -48,6 +54,13 @@ export const AppRoutes = () => {
 
           <Route path="/freelancers/:id/profile" element={<FreelancerProfileView />} />
           <Route path="/freelancers/:id/profile/edit" element={<FreelancerProfileEdit />} />
+
+          <Route path="/reviews/new/:jobRequestId/:freelancerId" element={<ReviewForm />} />
+          <Route path="/reviews/freelancer/:freelancerId" element={<ReviewsList />} />
+
+          <Route path="/admin/commissions" element={<CommissionsList />} />
+          <Route path="/admin/invoices" element={<InvoiceList />} />
+
 
         </Route>
       </Route>

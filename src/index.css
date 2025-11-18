@@ -218,7 +218,6 @@ body {
   box-shadow: 0 0 20px #00e8ff50;
 }
 
-/* TIMELINE BASE */
 .timeline {
   position: relative;
 }
@@ -270,4 +269,19 @@ body {
 .timeline-card.active {
   transform: translateX(8px);
   box-shadow: 0 0 20px #00e8ff66;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
