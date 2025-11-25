@@ -19,21 +19,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [token, setToken] = useState<string | null>(localStorage.getItem('access_token'))
     const [loading, setLoading] = useState(true)
 
-    // 🔹 Inicializar usuario desde token guardado
     useEffect(() => {
         const savedToken = localStorage.getItem('access_token')
 
         if (savedToken) {
             setToken(savedToken)
-
-            // Aquí puedes pedir datos del usuario al backend si quieres
             const savedEmail = localStorage.getItem('user_email')
             if (savedEmail) {
                 setUser({ email: savedEmail })
             }
         }
 
-        // ✔ Importante: loading false solo cuando ya leíste el localStorage
         setLoading(false)
     }, [])
 

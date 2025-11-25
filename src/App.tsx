@@ -18,7 +18,8 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       
-      <main className={`flex-grow ${isPrivate ? "pt-24" : ""}`}>
+      <main className={`flex-grow: 1 ${isPrivate ? "pt-[88px]" : "pt-[68px]"}`}>
+
         <AppRoutes />
       </main>
 

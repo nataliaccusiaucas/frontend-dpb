@@ -15,6 +15,17 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>
 
+const CATEGORIES = [
+  "Programación web",
+  "Móvil / Apps",
+  "Diseño gráfico",
+  "Marketing",
+  "Community Manager",
+  "Data / Analytics",
+  "UX/UI",
+  "Otro",
+]
+
 export function JobRequestForm() {
   const { register, handleSubmit, formState: { errors, isSubmitting }} =
     useForm<FormValues>({
@@ -68,10 +79,30 @@ export function JobRequestForm() {
 
         <div>
           <label className="text-[#E4FCFF] text-sm">Categoría (opcional)</label>
-          <input
-            className="w-full bg-transparent border border-white/20 rounded-md px-3 py-2 text-[#E4FCFF]"
-            {...register("category")}
-          />
+          
+        <label className="text-[#E4FCFF] text-sm">Categoría</label>
+<select
+  {...register("category")}
+  className="
+    w-full px-3 py-2 rounded-md 
+    bg-transparent border border-white/20 
+    text-[#E4FCFF] 
+    focus:border-[#00E8FF] 
+    transition
+  "
+>
+                <option value="" className="text-black">Selecciona una categoría</option>
+                {CATEGORIES.map((cat) => (
+                  <option
+                    key={cat}
+                    value={cat}
+                    className="text-black"
+                  >
+                    {cat}
+                  </option>
+                ))}
+              </select>
+
         </div>
 
         <div>

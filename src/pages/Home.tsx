@@ -1,238 +1,346 @@
 import { StepsTimeline } from "../components/StepsTimeline";
+
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="min-h-screen bg-linear-to-b from-[#E4FCFF] via-white to-[#E4FCFF] text-[#004F62]">
+      {/* HERO */}
+      <section className="relative max-w-6xl mx-auto px-6 pt-32 pb-16 md:pb-24">
+        {/* Glow de fondo */}
+        <div className="pointer-events-none select-none absolute -top-40 -right-40 w-80 h-80 rounded-full bg-[#00E8FF]/30 blur-3xl opacity-70" />
+        <div className="pointer-events-none select-none absolute top-40 -left-20 w-72 h-72 rounded-full bg-[#004F62]/20 blur-3xl opacity-70" />
 
-    <section className="relative min-h-screen bg-[#070707] text-white flex flex-col items-center justify-center px-6 pt-32 overflow-hidden">
-        <img
-            src="/logo-h.png"
-            alt="HireHub Logo"
-            className="
-            absolute top-1/2 left-1/2 
-            -translate-x-1/2 -translate-y-1/2
-            w-[70rem] opacity-10 
-            pointer-events-none select-none 
-            animate-hero-logo animate-hero-float
-            "
-        />
+        <div className="grid md:grid-cols-[1.2fr,1fr] gap-10 items-center relative z-10">
+          {/* Texto principal */}
+          <div>
+            <p className="uppercase tracking-[0.25em] text-xs text-[#004F62]/70 mb-4 font-medium">
+              DOERS FOR DREAMERS
+            </p>
 
-        <h1 className="font-title text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8">
-          Bienvenido a{" "}
-          <span className="text-[#00E8FF] drop-shadow-[0_0_12px_#00E8FF]">
-            HireHub
-          </span>
-        </h1>
+            <h1 className="font-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-[#070707]">
+              Encuentra al{" "}
+              <span className="text-[#00A6C4]">freelancer ideal</span>{" "}
+              para tu próximo proyecto.
+            </h1>
 
-        <p className="font-body text-lg md:text-xl text-[#E4FCFF] max-w-2xl text-center mb-12 leading-relaxed">
-          Conecta con oportunidades, freelancers y proyectos increíbles. <br />
-          Tu plataforma moderna para crecer, trabajar y crear.
-        </p>
+            <p className="font-body text-base md:text-lg text-[#004F62]/80 max-w-xl mb-8">
+              Publica lo que necesitas, recibe propuestas de profesionales
+              verificados y elige con total transparencia. Todo en un solo lugar,
+              sin fricciones.
+            </p>
 
-        <div className="flex gap-6">
-          <a
-            href="/login"
-            className="px-8 py-3 bg-[#00E8FF] text-black rounded-lg font-body font-semibold shadow-[0_0_12px_#00E8FF] hover:bg-[#00C6A6] transition"
-          >
-            Iniciar sesión
-          </a>
+            <div className="flex flex-wrap gap-4 mb-6">
+              <a
+                href="/register"
+                className="px-7 py-3 rounded-full bg-[#00E8FF] text-[#070707] font-semibold font-body shadow-[0_12px_40px_rgba(0,232,255,0.45)] hover:bg-[#00C6E0] transition-transform hover:-translate-y-0.5"
+              >
+                Comenzar ahora
+              </a>
 
-          <a
-            href="/register"
-            className="px-8 py-3 border border-[#00E8FF] text-[#00E8FF] hover:bg-[#00E8FF] hover:text-black rounded-lg font-body font-semibold transition shadow-[0_0_8px_#00E8FF]"
-          >
-            Regístrate
-          </a>
+              <a
+                href="/login"
+                className="px-7 py-3 rounded-full border border-[#00E8FF]/60 bg-white/60 backdrop-blur-xl text-[#004F62] font-semibold font-body hover:bg-[#E4FCFF] transition"
+              >
+                Ya tengo una cuenta
+              </a>
+            </div>
+
+            <div className="flex flex-wrap gap-6 text-xs md:text-sm text-[#004F62]/70 font-body">
+              <div className="flex flex-col">
+                <span className="font-semibold text-[#004F62]">
+                  Match inteligente
+                </span>
+                <span>Algoritmo de categorías y skills.</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold text-[#004F62]">
+                  Comisiones claras
+                </span>
+                <span>5% por proyecto completado.</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold text-[#004F62]">
+                  Enfocado en LATAM
+                </span>
+                <span>Precios y pagos pensados para la región.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card simulando app */}
+          <div className="relative">
+            <div className="mx-auto w-full max-w-sm">
+              <div className="rounded-4x! bg-white/80 backdrop-blur-2xl border border-[#00E8FF]/20 shadow-[0_24px_80px_rgba(7,7,7,0.18)] p-5">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xs font-semibold text-[#00A6C4] bg-[#E4FCFF] px-3 py-1 rounded-full">
+                    Vista del cliente
+                  </span>
+                  <span className="text-[10px] text-[#004F62]/60">
+                    Ofertas en tiempo real
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  {/* JobRequest mini */}
+                  <div className="rounded-2xl border border-[#004F62]/10 bg-[#F8FEFF] p-3">
+                    <p className="text-xs uppercase tracking-wide text-[#004F62]/60 mb-1">
+                      SOLICITUD
+                    </p>
+                    <p className="text-sm font-semibold text-[#070707]">
+                      Landing page para startup fintech
+                    </p>
+                    <p className="text-xs text-[#004F62]/70 mt-1">
+                      Presupuesto: <span className="font-semibold">S/ 1,200</span>
+                    </p>
+                  </div>
+
+                  {/* Oferta 1 */}
+                  <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
+                    <div>
+                      <p className="text-sm font-semibold text-[#070707]">
+                        Ana, Frontend Dev
+                      </p>
+                      <p className="text-xs text-[#004F62]/70">
+                        Entrego en 5 días. Incluye versión mobile.
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-[#004F62]/60 mb-1">Propuesta</p>
+                      <p className="text-sm font-semibold text-[#00A6C4]">
+                        S/ 1,050
+                      </p>
+                    </div>
+                    <button className="text-xs font-semibold text-[#00A6C4] underline">
+                      Ver detalles
+                    </button>
+                  </div>
+
+                  {/* Oferta 2 */}
+                  <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
+                    <div>
+                      <p className="text-sm font-semibold text-[#070707]">
+                        Ana, Frontend Dev
+                      </p>
+                      <p className="text-xs text-[#004F62]/70">
+                        Entrego en 5 días. Incluye versión mobile.
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-[#004F62]/60 mb-1">Propuesta</p>
+                      <p className="text-sm font-semibold text-[#00A6C4]">
+                        S/ 1,050
+                      </p>
+                    </div>
+                    <button className="text-xs font-semibold text-[#00A6C4] underline">
+                      Ver detalles
+                    </button>
+                  </div>
+
+                  {/* Oferta 3 */}
+                  <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
+                    <div>
+                      <p className="text-sm font-semibold text-[#070707]">
+                        Ana, Frontend Dev
+                      </p>
+                      <p className="text-xs text-[#004F62]/70">
+                        Entrego en 5 días. Incluye versión mobile.
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-[#004F62]/60 mb-1">Propuesta</p>
+                      <p className="text-sm font-semibold text-[#00A6C4]">
+                        S/ 1,400
+                      </p>
+                    </div>
+                    <button className="text-xs font-semibold text-[#00A6C4] underline">
+                      Ver detalles
+                    </button>
+                  </div>
+
+                  {/* Oferta 3 */}
+                  <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
+                    <div>
+                      <p className="text-sm font-semibold text-[#070707]">
+                        Ana, Frontend Dev
+                      </p>
+                      <p className="text-xs text-[#004F62]/70">
+                        Entrego en 5 días. Incluye versión mobile.
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-[#004F62]/60 mb-1">Propuesta</p>
+                      <p className="text-sm font-semibold text-[#00A6C4]">
+                        S/ 1,400
+                      </p>
+                    </div>
+                    <button className="text-xs font-semibold text-[#00A6C4] underline">
+                      Ver detalles
+                    </button>
+                  </div>
+
+                  <button className="mt-2 w-full text-xs font-semibold text-white bg-[#004F62] rounded-xl py-2 hover:bg-[#003647] transition">
+                    Ver todas las ofertas
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <div className="bg-[#070707]">
-        <svg
-          className="w-full h-16 md:h-24"
-          viewBox="0 0 1440 320"
-          preserveAspectRatio="none"
-        >
-          <path
-            fill="#004F62"
-            d="M0,160L80,160C160,160,320,160,480,154.7C640,149,800,139,960,144C1120,149,1280,171,1360,181.3L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
-          />
-        </svg>
-      </div>
-
-      <section className="bg-[#004F62] text-white py-20 md:py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-
-          <div className="text-center mb-14">
-            <p className="font-body text-sm uppercase tracking-[0.25em] text-[#E4FCFF]/70 mb-3">
+      {/* SECCIÓN BENEFICIOS */}
+      <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-10">
+          <div>
+            <p className="font-body text-xs uppercase tracking-[0.25em] text-[#004F62]/60 mb-3">
               PARA CLIENTES Y FREELANCERS
             </p>
-            <h2 className="font-title text-3xl md:text-4xl font-bold mb-4">
-              ¿Por qué elegir{" "}
-              <span className="text-[#00E8FF] drop-shadow-[0_0_8px_#00E8FF]">
-                HireHub
-              </span>
-              ?
+            <h2 className="font-title text-2xl md:text-3xl font-bold text-[#070707] mb-3">
+              Un flujo simple para trabajar sin fricciones.
             </h2>
-            <p className="font-body text-base md:text-lg text-[#E4FCFF]/80 max-w-2xl mx-auto">
-              Creamos un puente seguro entre personas con ideas y quienes
-              saben hacerlas realidad. Sin fricción, sin burocracia, con
-              total transparencia.
+            <p className="font-body text-sm md:text-base text-[#004F62]/80 max-w-xl">
+              Publicas una necesidad, recibes propuestas, comparas, eliges y pagas
+              con total claridad. HireHub se encarga del resto.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="rounded-2xl bg-white/80 backdrop-blur-xl border border-[#00E8FF]/20 shadow-[0_18px_50px_rgba(0,79,98,0.08)] p-5">
+            <h3 className="font-title text-lg mb-2 text-[#070707]">
+              Match rápido e inteligente
+            </h3>
+            <p className="font-body text-sm text-[#004F62]/80">
+              Sistema de categorías y skills para conectar proyectos con
+              freelancers que realmente encajan.
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {/* CARD 1 */}
-            <div className="bg-[#070707]/40 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_18px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-              <h3 className="font-title text-xl mb-2">
-                Match rápido e inteligente
-              </h3>
-              <p className="font-body text-sm md:text-base text-[#E4FCFF]/85">
-                Publica tu necesidad y recibe propuestas de freelancers
-                verificados en minutos, no en semanas.
+          <div className="rounded-2xl bg-white/80 backdrop-blur-xl border border-[#00E8FF]/20 shadow-[0_18px_50px_rgba(0,79,98,0.08)] p-5">
+            <h3 className="font-title text-lg mb-2 text-[#070707]">
+              Transparencia y seguridad
+            </h3>
+            <p className="font-body text-sm text-[#004F62]/80">
+              Ofertas claras, historial de reseñas y comisiones visibles desde el
+              inicio. Sin letras pequeñas.
+            </p>
+          </div>
+
+          <div className="rounded-2xl bg-white/80 backdrop-blur-xl border border-[#00E8FF]/20 shadow-[0_18px_50px_rgba(0,79,98,0.08)] p-5">
+            <h3 className="font-title text-lg mb-2 text-[#070707]">
+              Pensado para crecer contigo
+            </h3>
+            <p className="font-body text-sm text-[#004F62]/80">
+              Desde encargos pequeños hasta proyectos grandes y recurrentes.
+              Lleva el seguimiento desde un solo panel.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN TIMELINE (PASOS) */}
+      <section className="bg-white/80 border-y border-[#E4FCFF] py-16 md:py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="font-body text-xs uppercase tracking-[0.25em] text-[#004F62]/60 mb-3">
+              ¿CÓMO FUNCIONA?
+            </p>
+            <h2 className="font-title text-2xl md:text-3xl font-bold text-[#070707] mb-4">
+              De idea a proyecto terminado en 4 pasos.
+            </h2>
+            <p className="font-body text-sm md:text-base text-[#004F62]/80 max-w-2xl mx-auto">
+              Diseñamos un flujo sencillo tanto para clientes como para
+              freelancers, para que todos sepan en qué parte del proceso están.
+            </p>
+          </div>
+
+          <StepsTimeline />
+        </div>
+      </section>
+
+      {/* SECCIÓN CATEGORÍAS (RESUMIDA) */}
+      <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
+        <div className="text-center mb-12">
+          <p className="font-body text-xs uppercase tracking-[0.25em] text-[#004F62]/60 mb-3">
+            CATEGORÍAS DESTACADAS
+          </p>
+          <h2 className="font-title text-2xl md:text-3xl font-bold text-[#070707] mb-4">
+            Donde más suele contratarse en HireHub.
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <CategoryCard
+            title="Diseño & Branding"
+            description="Identidad visual, logos, banners, presentaciones y piezas creativas para tu marca."
+            icon="/icons/diseño.png"
+          />
+          <CategoryCard
+            title="Desarrollo Web & Software"
+            description="Sitios web, apps, APIs, integraciones y dashboards para tu negocio."
+            icon="/icons/desarrollo web.png"
+          />
+          <CategoryCard
+            title="Marketing Digital"
+            description="Gestión de redes, anuncios, SEO, embudos y campañas orientadas a resultados."
+            icon="/icons/digital marketing.png"
+          />
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="pb-20 px-6">
+        <div className="max-w-4xl mx-auto rounded-3xl bg-linear-to-r from-[#004F62] via-[#003A4B] to-[#004F62] text-white p-8 md:p-10 shadow-[0_24px_80px_rgba(0,58,75,0.55)] relative overflow-hidden">
+          <div className="absolute -right-24 -bottom-24 w-72 h-72 rounded-full bg-[#00E8FF]/30 blur-3xl" />
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <h2 className="font-title text-2xl md:text-3xl font-bold mb-2">
+                ¿Lista para tu siguiente proyecto?
+              </h2>
+              <p className="font-body text-sm md:text-base text-[#E4FCFF]/90">
+                Regístrate como cliente o freelancer y empieza a construir tu
+                próximo caso de éxito hoy mismo.
               </p>
             </div>
-
-            <div className="bg-[#070707]/40 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_18px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-              <h3 className="font-title text-xl mb-2">
-                Transparencia y seguridad
-              </h3>
-              <p className="font-body text-sm md:text-base text-[#E4FCFF]/85">
-                Costos claros desde el inicio y comunicación centralizada dentro de la plataforma.
-              </p>
-            </div>
-
-            <div className="bg-[#070707]/40 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_18px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-              <h3 className="font-title text-xl mb-2">
-                Pensado para crecer contigo
-              </h3>
-              <p className="font-body text-sm md:text-base text-[#E4FCFF]/85">
-                Desde pequeños encargos hasta proyectos complejos: organiza,
-                compara ofertas y haz seguimiento desde un solo lugar.
-              </p>
+            <div className="flex gap-4 flex-wrap">
+              <a
+                href="/register"
+                className="px-6 py-3 rounded-full bg-white text-[#004F62] font-semibold font-body hover:bg-[#E4FCFF] transition"
+              >
+                Crear cuenta
+              </a>
+              <a
+                href="/login"
+                className="px-6 py-3 rounded-full border border-[#E4FCFF]/70 text-[#E4FCFF] font-semibold font-body hover:bg-white/10 transition"
+              >
+                Iniciar sesión
+              </a>
             </div>
           </div>
         </div>
       </section>
-        <section className="bg-white text-[#004F62] py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-<StepsTimeline />
-</div>
-
-        </section>
-
-        {/* SECCIÓN 4 — CATEGORÍAS DE SERVICIOS */}
-<section className="bg-[#070707] text-white py-24 px-6 relative overflow-hidden">
-
-  {/* Fondo sutil en diagonal */}
-  <div className="absolute inset-0 opacity-[0.06] select-none pointer-events-none">
-    <img 
-      src="/logo-h.png" 
-      className="w-full h-full object-cover rotate-12 scale-110"
-    />
-  </div>
-
-  <div className="max-w-6xl mx-auto relative z-10">
-
-    <div className="text-center mb-16">
-      <p className="font-body text-sm uppercase tracking-[0.25em] text-[#E4FCFF]/70 mb-3">
-        ESPECIALIDADES DISPONIBLES
-      </p>
-
-      <h2 className="font-title text-3xl md:text-4xl font-bold mb-4">
-        Encuentra al profesional <span className="text-[#00E8FF] drop-shadow-[0_0_8px_#00E8FF]">ideal</span>
-      </h2>
-
-      <p className="font-body text-base md:text-lg text-[#E4FCFF]/80 max-w-2xl mx-auto">
-        Desde creatividad hasta ingeniería, HireHub reúne a especialistas listos para competir por tu proyecto.
-      </p>
     </div>
+  );
+}
 
-    {/* GRID DE CATEGORÍAS */}
-    <div className="grid md:grid-cols-3 gap-8">
+/** Card pequeña para categorías */
+type CategoryCardProps = {
+  title: string;
+  description: string;
+  icon: string;
+};
 
-      {/* CARD 1 */}
-      <div className="bg-[#004F62]/30 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_20px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-          <img
-            src="/icons/diseño.png"
-            alt="Branding Icon"
-                className="w-14 h-14 mb-4 neon-card-icon"
-            />
-
-        <h3 className="font-title text-xl mb-2 text-white">Diseño & Branding</h3>
-        <p className="font-body text-[#E4FCFF]/80">
-          Identidad visual, logos, diseño publicitario y contenido creativo para marcas modernas.
-        </p>
+function CategoryCard({ title, description, icon }: CategoryCardProps) {
+  return (
+    <div className="rounded-2xl bg-white/80 backdrop-blur-xl border border-[#00E8FF]/20 shadow-[0_18px_50px_rgba(0,79,98,0.08)] p-6 flex flex-col gap-3">
+      <div className="w-12 h-12 rounded-2xl bg-[#E4FCFF] flex items-center justify-center mb-1 overflow-hidden">
+        <img
+          src={icon}
+          alt={title}
+          className="w-8 h-8 object-contain"
+        />
       </div>
-
-      {/* CARD 2 */}
-      <div className="bg-[#004F62]/30 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_20px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-          <img
-                src="/icons/desarrollo web.png"
-                alt="Branding Icon"
-                className="w-14 h-14 mb-4 neon-card-icon"
-            />
-        <h3 className="font-title text-xl mb-2 text-white">Desarrollo Web & Software</h3>
-        <p className="font-body text-[#E4FCFF]/80">
-          Sitios web, aplicaciones, APIs, integración de sistemas y soluciones empresariales.
-        </p>
-      </div>
-
-      {/* CARD 3 */}
-      <div className="bg-[#004F62]/30 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_20px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-          <img
-                src="/icons/digital marketing.png"
-                alt="Branding Icon"
-                className="w-14 h-14 mb-4 neon-card-icon"
-            />
-        <h3 className="font-title text-xl mb-2 text-white">Marketing Digital</h3>
-        <p className="font-body text-[#E4FCFF]/80">
-          Gestión de redes, campañas, copywriting, SEO, anuncios y estrategias de crecimiento.
-        </p>
-      </div>
-
-      {/* CARD 4 */}
-      <div className="bg-[#004F62]/30 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_20px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-          <img
-                src="/icons/finanzas.png"
-                alt="Branding Icon"
-                className="w-14 h-14 mb-4 neon-card-icon"
-            />
-        <h3 className="font-title text-xl mb-2 text-white">Negocios & Finanzas</h3>
-        <p className="font-body text-[#E4FCFF]/80">
-          Gestión empresarial, análisis financiero, contabilidad, asesoría y optimización de procesos.
-        </p>
-      </div>
-
-      {/* CARD 5 */}
-      <div className="bg-[#004F62]/30 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_20px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-          <img
-                src="/icons/asistente.png"
-                alt="Branding Icon"
-                className="w-14 h-14 mb-4 neon-card-icon"
-            />
-        <h3 className="font-title text-xl mb-2 text-white">Asistencia Virtual</h3>
-        <p className="font-body text-[#E4FCFF]/80">
-          Gestión de agendas, soporte administrativo, coordinación y tareas operativas.
-        </p>
-      </div>
-
-      {/* CARD 6 */}
-      <div className="bg-[#004F62]/30 border border-[#00E8FF]/30 rounded-2xl p-6 shadow-[0_0_20px_#00E8FF20] hover:-translate-y-1 hover:shadow-[0_0_26px_#00E8FF40] transition">
-          <img
-                src="/icons/edicion multimedia.png"
-                alt="Branding Icon"
-                className="w-14 h-14 mb-4 neon-card-icon"
-            />
-        <h3 className="font-title text-xl mb-2 text-white">Edición Multimedia</h3>
-        <p className="font-body text-[#E4FCFF]/80">
-          Edición de video, animación, fotografía, efectos visuales y contenido para redes.
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
+      <h3 className="font-title text-lg text-[#070707]">{title}</h3>
+      <p className="font-body text-sm text-[#004F62]/80">{description}</p>
     </div>
   );
 }

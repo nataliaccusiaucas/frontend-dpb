@@ -24,18 +24,23 @@ export function AppNavbar() {
 
   return (
     <header
-      className={`
-        fixed top-0 left-0 w-full z-50 transition-all duration-300
-        ${
-          isAuthPage
-            ? "bg-[#070707]/70 backdrop-blur-xl border-b border-[#00E8FF]/10 shadow-[0_0_12px_#00E8FF20]"
-            : scrolled
-            ? "bg-[#070707]/70 backdrop-blur-xl border-b border-[#00E8FF]/20 shadow-[0_0_12px_#00E8FF20]"
-            : "bg-transparent backdrop-blur-0 border-transparent"
-        }
-      `}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+  className={`
+    fixed top-0 left-0 w-full z-50 transition-all duration-300
+
+    ${
+      isAuthPage
+        ? // Pages Auth → Siempre navbar mate
+          "bg-[#070707]/70 backdrop-blur-xl border-b border-[#00E8FF]/10 shadow-[0_0_12px_#00E8FF20]"
+        : scrolled
+        ? // Home scrolled o páginas privadas
+          "bg-[#070707]/70 backdrop-blur-xl border-b border-[#00E8FF]/20 shadow-[0_0_12px_#00E8FF20]"
+        : // Home sin scroll → transparente & delgado
+          "bg-transparent backdrop-blur-0 border-transparent"
+    }
+  `}
+>
+  <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between">
+
         
         <Link
           to="/"
