@@ -10,11 +10,10 @@ import { RegisterPage } from "./modules/auth/RegisterPage"
 import { ProtectedRoute } from "./modules/auth/ProtectedRoute"
 
 
-import JobRequestFormPage from "./pages/jobrequests/JobRequestFormPage"
-import { JobRequestsPage } from "./pages/jobrequests/JobRequestsPage"
+import JobRequestFormPage from "./pages/JobRequestFormPage"
+import { JobRequestsPage } from "./pages/JobRequestsPage"
 import { JobRequestDetail } from "./modules/jobrequests/JobRequestDetail"
 
-import { OffersList } from "./modules/offers/OffersList"
 import { OfferDetail } from "./modules/offers/OfferDetail"
 import { OfferForm } from "./modules/offers/OfferForm"
 
@@ -25,7 +24,7 @@ import { ReviewsList } from "./modules/reviews/ReviewLists"
 
 import { CommissionsList } from "./modules/commissions/CommissionsList"
 import { InvoiceList } from "./modules/commissions/InvoiceList"
-import { ClientOfferFeed } from "./modules/offers/ClientsOfferFeed"
+import { ClientOfferFeed } from "./modules/offers/ClientOfferFeed"
 
 
 import { Dashboard } from "./pages/Dashboard"
@@ -49,7 +48,7 @@ export const AppRoutes = () => {
           <Route path="/jobrequests/new" element={<JobRequestFormPage />} />
           <Route path="/jobrequests/:id" element={<JobRequestDetail />} />
 
-          <Route path="/offers" element={<OffersList />} />
+          <Route path="/offers" element={<ClientOfferFeed />} />
           <Route path="/offers/new" element={<OfferForm />} />
           <Route path="/offers/:id" element={<OfferDetail />} />
 
@@ -61,8 +60,6 @@ export const AppRoutes = () => {
 
           <Route path="/admin/commissions" element={<CommissionsList />} />
           <Route path="/admin/invoices" element={<InvoiceList />} />
-
-          <Route path="/client/offers" element={<ClientOfferFeed />} />
 
         </Route>
       </Route>
