@@ -13,12 +13,18 @@ import {
   ChevronRight
 } from "lucide-react"
 
-export function Sidebar() {
+export function Sidebar({ onToggle }: { onToggle: (v: boolean) => void }) {
   const { user, logout } = useAuth()
   const { unreadCount } = useNotifications()
   const navigate = useNavigate()
 
   const [collapsed, setCollapsed] = useState(false)
+
+  const toggleSidebar = () => {
+    const newState = !collapsed
+    setCollapsed(newState)
+    onToggle(newState)
+  }
 
   return (
     <aside
@@ -34,7 +40,6 @@ export function Sidebar() {
       `}
     >
 
-      {/* LOGO */}
       <div className="h-20 flex items-center justify-center px-4">
         {collapsed ? (
           <span className="font-title text-3xl text-[#00E8FF] drop-shadow-[0_0_8px_#00E8FF]">
@@ -47,9 +52,8 @@ export function Sidebar() {
         )}
       </div>
 
-      {/* TOGGLER BUTTON */}
       <button
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={toggleSidebar}
         className="
           absolute -right-4 top-24 w-8 h-8 rounded-full
           bg-[#070707]/80 border border-[#00E8FF]/30
@@ -62,7 +66,6 @@ export function Sidebar() {
         {collapsed ? <ChevronRight /> : <ChevronLeft />}
       </button>
 
-      {/* NAV ITEMS */}
       <nav className="flex flex-col gap-2 px-4 mt-4">
 
         <SidebarItem
@@ -94,10 +97,32 @@ export function Sidebar() {
         />
       </nav>
 
-      {/* --- PARTE DE ABAJO: NOTIFICATIONS + LOGOUT --- */}
+      <nav className="flex flex-col gap-2 px-4 mt-4">
+
+        
+        {(user.role === "ADMIN" || user.role === "FREELANCER") && (
+          <SidebarItem
+            to="/admin/commissions"
+            icon={<FileText />}
+            label={user.role === "ADMIN" ? "Comisiones" : "Mis comisiones"}
+            collapsed={collapsed}
+          />
+        )}
+
+        {(user.role === "ADMIN" || user.role === "FREELANCER") && (
+          <SidebarItem
+            to="/admin/invoices"
+            icon={<FileText />}
+            label={user.role === "ADMIN" ? "Facturas" : "Mis facturas"}
+            collapsed={collapsed}
+          />
+        )}
+
+      </nav>
+
+
       <div className="mt-auto px-4 mb-6 flex flex-col gap-3">
 
-        {/* NOTIFICATIONS */}
         <div
           className="
             relative flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer
@@ -121,7 +146,6 @@ export function Sidebar() {
           )}
         </div>
 
-        {/* LOGOUT */}
         <button
           onClick={() => {
             logout()
@@ -138,6 +162,7 @@ export function Sidebar() {
             <span className="text-sm font-body">Cerrar sesión</span>
           )}
         </button>
+
       </div>
 
     </aside>
@@ -164,8 +189,7 @@ function SidebarItem({
         transition-all duration-200 group cursor-pointer
         ${isActive
           ? "text-[#00E8FF] bg-white/10 shadow-[0_0_12px_#00E8FF60]"
-          : "text-gray-300 hover:bg-white/5 hover:text-[#00E8FF]"
-        }
+          : "text-gray-300 hover:bg-white/5 hover:text-[#00E8FF]"}
         `
       }
     >

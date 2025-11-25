@@ -16,7 +16,7 @@ export function ClientOfferFeed() {
       const data = await listOffersForClient(user.id)
       setOffers(data)
 
-      if (showToast && data.length > 0) {
+      if (showToast && data.length > offers.length) {
         const sound = new Audio("/sounds/new-offer.mp3")
         sound.volume = 0.4
         sound.play()
@@ -34,99 +34,98 @@ export function ClientOfferFeed() {
     return () => clearInterval(interval)
   }, [user])
 
-
-  async function handleAccept(id: string) {
-    await updateOfferStatus(id, "ACCEPTED")
+  async function handleAccept(offerId: string) {
+    await updateOfferStatus(offerId, "ACCEPTED")
     toast("✔ Oferta aceptada")
     loadOffers()
   }
 
-  async function handleReject(id: string) {
-    await updateOfferStatus(id, "REJECTED")
+  async function handleReject(offerId: string) {
+    await updateOfferStatus(offerId, "REJECTED")
     toast("✖ Oferta rechazada")
     loadOffers()
   }
 
   return (
-    <div className="pb-10">
-
-      {/* ENCABEZADO IGUAL AL DASHBOARD */}
-      <div className="text-center mb-10 mt-4">
-        <h1 className="text-3xl md:text-4xl font-title font-bold text-[#070707] drop-shadow-[0_0_6px_#00E8FF]">
+    <div className="max-w-5xl mx-auto mt-6 space-y-10">
+      
+      {/* 🔹 Encabezado */}
+      <div className="flex flex-col gap-1">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#004F62]/60 font-body">
+          TUS SOLICITUDES
+        </p>
+        <h1 className="text-3xl md:text-4xl font-title font-bold text-[#070707]">
           Ofertas recibidas
         </h1>
-        <p className="text-sm text-[#004F62]/70 font-body mt-1">
-          Las ofertas aparecerán aquí cuando los freelancers propongan un presupuesto.
+        <p className="text-[#004F62]/70 text-sm font-body">
+          Aquí verás las propuestas que envían los freelancers a tus solicitudes.
         </p>
       </div>
 
-      {/* SI NO HAY OFERTAS */}
-      {offers.length === 0 && !loading && (
-        <div className="max-w-lg mx-auto mt-20 bg-white/70 backdrop-blur-xl border border-[#00E8FF]/20 shadow-[0_20px_60px_rgba(0,79,98,0.12)] rounded-3xl p-10 text-center">
-          <p className="text-lg font-title text-[#004F62]/70">
+      {/* 🔹 Si está cargando */}
+      {loading && (
+        <p className="text-[#004F62] text-lg text-center">Cargando ofertas...</p>
+      )}
+
+      {/* 🔹 Estado vacío */}
+      {!loading && offers.length === 0 && (
+        <div className="rounded-3xl bg-white/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,79,98,0.12)] border border-[#00E8FF]/15 p-10 text-center">
+          <h2 className="text-[#070707] text-xl font-title">
             Aún no hay ofertas para tus solicitudes.
+          </h2>
+          <p className="text-[#004F62]/70 mt-2 text-sm">
+            (Los freelancers te enviarán propuestas cuando revisen tus solicitudes)
           </p>
         </div>
       )}
 
-      {/* LISTA DE OFERTAS */}
-      <div className="max-w-3xl mx-auto space-y-6 px-4">
+      {/* 🔹 Listado de ofertas */}
+      <div className="space-y-6">
         {offers.map((offer) => (
           <div
             key={offer.id}
-            className="
-              bg-white/80 backdrop-blur-xl 
-              border border-[#00E8FF]/25 
-              rounded-3xl p-6 
-              shadow-[0_20px_60px_rgba(0,79,98,0.12)]
-              hover:scale-[1.01] transition
-            "
+            className="bg-white/90 backdrop-blur-xl rounded-3xl border border-[#00E8FF]/20 shadow-[0_18px_50px_rgba(0,79,98,0.10)] p-6 md:p-8 flex flex-col gap-4"
           >
+            {/* Título */}
             <div className="flex items-start justify-between">
               <div>
-                <h2 className="text-xl font-title text-[#070707]">
-                  Oferta de {offer.freelancerName}
+                <h2 className="text-[#070707] text-xl font-semibold font-title">
+                  {offer.freelancerName}
                 </h2>
-
-                <p className="text-sm text-[#004F62]/80 mt-1">
-                  <strong>Mensaje:</strong> {offer.proposalText}
+                <p className="text-[#004F62]/70 text-sm">
+                  Oferta para: {offer.jobRequestTitle}
                 </p>
               </div>
 
-              <span className="text-lg font-semibold text-[#00A6C4]">
+              <span className="text-[#00A6C4] font-bold text-lg">
                 S/ {offer.proposedBudget}
               </span>
             </div>
 
-            <div className="flex gap-4 mt-5">
+            {/* Texto */}
+            <p className="text-[#004F62]/80 leading-relaxed">
+              {offer.proposalText}
+            </p>
+
+            {/* Botones */}
+            <div className="flex gap-4">
               <button
                 onClick={() => handleAccept(offer.id)}
-                className="
-                  flex-1 py-2 rounded-xl 
-                  bg-[#00E8FF] text-[#070707] font-semibold 
-                  shadow-[0_0_12px_rgba(0,232,255,0.8)]
-                  hover:bg-[#00CAE0] transition
-                "
+                className="px-5 py-2 rounded-xl bg-[#00E8FF] text-black font-semibold shadow-[0_10px_30px_rgba(0,232,255,0.3)] hover:bg-[#00d0e6] transition"
               >
                 Aceptar
               </button>
 
               <button
                 onClick={() => handleReject(offer.id)}
-                className="
-                  flex-1 py-2 rounded-xl 
-                  bg-red-500/80 text-white font-semibold
-                  hover:bg-red-600 transition
-                "
+                className="px-5 py-2 rounded-xl bg-red-500/80 text-white font-semibold hover:bg-red-600 transition"
               >
                 Rechazar
               </button>
             </div>
-
           </div>
         ))}
       </div>
     </div>
   )
 }
-

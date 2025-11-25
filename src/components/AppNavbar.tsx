@@ -1,6 +1,5 @@
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate} from "react-router-dom";
 import { useAuth } from "../modules/auth/AuthContext";
-import { useEffect, useState } from "react";
 import { Bell } from "lucide-react"
 import { useNotifications } from "../modules/notification/useNotifications"
 
@@ -9,18 +8,6 @@ export function AppNavbar() {
   const { user, logout } = useAuth();
   const { notifications, unreadCount, markOne } = useNotifications();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const [scrolled, setScrolled] = useState(false);
-
-  const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/register";
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <header
@@ -28,14 +15,8 @@ export function AppNavbar() {
     fixed top-0 left-0 w-full z-50 transition-all duration-300
 
     ${
-      isAuthPage
-        ? // Pages Auth → Siempre navbar mate
+  
           "bg-[#070707]/70 backdrop-blur-xl border-b border-[#00E8FF]/10 shadow-[0_0_12px_#00E8FF20]"
-        : scrolled
-        ? // Home scrolled o páginas privadas
-          "bg-[#070707]/70 backdrop-blur-xl border-b border-[#00E8FF]/20 shadow-[0_0_12px_#00E8FF20]"
-        : // Home sin scroll → transparente & delgado
-          "bg-transparent backdrop-blur-0 border-transparent"
     }
   `}
 >

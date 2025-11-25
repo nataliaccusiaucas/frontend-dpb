@@ -34,7 +34,7 @@ export function LoginPage() {
   return (
     <div className="
       min-h-screen flex items-center justify-center 
-      bg-gradient-to-br from-[#E4FCFF] via-white to-[#CFF8FF]
+      bg-linear-to-br from-[#E4FCFF] via-white to-[#CFF8FF]
       px-4 relative overflow-hidden
     ">
 
@@ -46,7 +46,7 @@ export function LoginPage() {
 
       <div
         className="
-          w-full max-w-md p-10 rounded-[2rem]
+          w-full max-w-md p-10 rounded-4xl
           bg-white/60 backdrop-blur-2xl 
           border border-white/40 shadow-[0_0_40px_#00E8FF20]
           relative z-10

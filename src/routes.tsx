@@ -10,9 +10,9 @@ import { RegisterPage } from "./modules/auth/RegisterPage"
 import { ProtectedRoute } from "./modules/auth/ProtectedRoute"
 
 
-import JobRequestFormPage from "./pages/JobRequestFormPage"
-import { JobRequestsPage } from "./pages/JobRequestsPage"
 import { JobRequestDetail } from "./modules/jobrequests/JobRequestDetail"
+import { JobRequestForm } from "./modules/jobrequests/JobRequestForm"
+import { JobRequestList} from "./modules/jobrequests/JobRequestList"
 
 import { OfferDetail } from "./modules/offers/OfferDetail"
 import { OfferForm } from "./modules/offers/OfferForm"
@@ -44,8 +44,8 @@ export const AppRoutes = () => {
 
           <Route path="/dashboard" element={<Dashboard />} />
 
-          <Route path="/jobrequests" element={<JobRequestsPage />} />
-          <Route path="/jobrequests/new" element={<JobRequestFormPage />} />
+          <Route path="/jobrequests" element={<JobRequestList />} />
+          <Route path="/jobrequests/new" element={<JobRequestForm />} />
           <Route path="/jobrequests/:id" element={<JobRequestDetail />} />
 
           <Route path="/offers" element={<ClientOfferFeed />} />
