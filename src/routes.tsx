@@ -26,6 +26,9 @@ import { CommissionsList } from "./modules/commissions/CommissionsList"
 import { InvoiceList } from "./modules/commissions/InvoiceList"
 import { ClientOfferFeed } from "./modules/offers/ClientOfferFeed"
 
+import { ConversationsPage } from "./modules/chat/ConversationsPage"
+import { ChatRoomPage } from "./modules/chat/ChatRoomPage"
+
 
 import { Dashboard } from "./pages/Dashboard"
 
@@ -60,6 +63,9 @@ export const AppRoutes = () => {
 
           <Route path="/admin/commissions" element={<CommissionsList />} />
           <Route path="/admin/invoices" element={<InvoiceList />} />
+
+          <Route path="/chat" element={<ConversationsPage />} />
+          <Route path="/chat/:conversationId" element={<ChatRoomPage />} />
 
         </Route>
       </Route>

@@ -12,16 +12,16 @@ export function PrivateLayout() {
 
       <div
         className={`
-          flex-1 transition-all duration-300
+          flex-1 transition-all duration-300 min-h-screen
           ${collapsed ? "ml-20" : "ml-64"}
         `}
       >
-        {/* CONTENEDOR PREMIUM CENTRADO */}
         <main
           className="
             pt-10 px-8 pb-16
             max-w-[1500px]
             mx-auto
+            min-h-screen
           "
         >
           <Outlet />

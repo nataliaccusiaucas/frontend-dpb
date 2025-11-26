@@ -40,7 +40,6 @@ export function Dashboard() {
   return (
     <div className="pb-10 max-w-6xl mx-auto mt-10 space-y-12">
 
-      {/* HEADER */}
       <header>
         <p className="text-xs uppercase tracking-[0.2em] text-[#004F62]/60 font-body">
           PANEL GENERAL
@@ -92,7 +91,6 @@ export function Dashboard() {
         <InfoCard label="Notificaciones" value={unreadCount} />
       </div>
 
-      {/* MAIN SECTIONS */}
       <div className="grid lg:grid-cols-[2fr,1fr] gap-10">
 
         <div className="space-y-10">
@@ -128,7 +126,6 @@ export function Dashboard() {
   )
 }
 
-/* ---------- COMPONENTES UNIFICADOS ---------- */
 
 function InfoCard({ label, value }: { label: string; value: number }) {
   return (

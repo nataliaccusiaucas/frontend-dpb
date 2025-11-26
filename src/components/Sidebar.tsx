@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { useAuth } from "../modules/auth/AuthContext"
 import { useNotifications } from "../modules/notification/useNotifications"
+import { MessageCircle } from "lucide-react"
 import { useState } from "react"
 import {
   LayoutDashboard,
@@ -95,6 +96,14 @@ export function Sidebar({ onToggle }: { onToggle: (v: boolean) => void }) {
           label="Profile"
           collapsed={collapsed}
         />
+
+                <SidebarItem
+          to="/chat"
+          icon={<MessageCircle />}
+          label="Chat"
+          collapsed={collapsed}
+        />
+
       </nav>
 
       <nav className="flex flex-col gap-2 px-4 mt-4">
