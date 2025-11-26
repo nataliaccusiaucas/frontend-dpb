@@ -7,12 +7,18 @@ import { useToast } from '../../components/ui/Toaster'
 
 const schema = z.object({
   name: z.string().min(2, 'Nombre es obligatorio'),
-  email: z.string().email(),
+  email: z.string().email('Correo inválido'),
+
+  role: z.enum(['CLIENT', 'FREELANCER']).refine(
+    (v) => v === 'CLIENT' || v === 'FREELANCER',
+    { message: 'Selecciona un rol' }
+  ),
+
   password: z.string().min(6, 'La contraseña debe tener al menos 6 caracteres'),
-  confirm: z.string().min(6, 'Contraseña es obligatoria')
+  confirm: z.string().min(6, 'Confirmación es obligatoria'),
 }).refine((d) => d.password === d.confirm, {
   message: 'Las contraseñas no coinciden',
-  path: ['confirm']
+  path: ['confirm'],
 })
 
 type FormValues = z.infer<typeof schema>
@@ -27,10 +33,11 @@ export function RegisterPage() {
 
   async function onSubmit(values: FormValues) {
     try {
-      await registerUser(values.email, values.password, values.name)
+      await registerUser(values.email, values.password, values.name, values.role)
       toast('Cuenta creada exitosamente')
       navigate('/login')
-    } catch {
+    } catch (e) {
+      console.error(e)
       toast('No se pudo registrar la cuenta')
     }
   }
@@ -62,66 +69,49 @@ export function RegisterPage() {
               Nombre completo
             </label>
             <input
-              className="
-                w-full px-4 py-2 rounded-lg 
-                bg-white/60 text-gray-900 
-                border border-gray-300 
-                focus:border-[#00C2D8] focus:ring-1 focus:ring-[#00C2D8]
-                outline-none transition
-              "
+              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
               {...reg('name')}
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
           </div>
 
           <div>
-            <label className="block text-sm text-[#004F62] mb-1">
-              Correo electrónico
-            </label>
+            <label className="block text-sm text-[#004F62] mb-1">Correo electrónico</label>
             <input
-              className="
-                w-full px-4 py-2 rounded-lg 
-                bg-white/60 text-gray-900
-                border border-gray-300 
-                focus:border-[#00C2D8] focus:ring-1 focus:ring-[#00C2D8]
-                outline-none transition
-              "
+              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
               {...reg('email')}
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
           </div>
 
           <div>
-            <label className="block text-sm text-[#004F62] mb-1">
-              Contraseña
-            </label>
+            <label className="block text-sm text-[#004F62] mb-1">Tipo de cuenta</label>
+            <select
+              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
+              {...reg('role')}
+            >
+              <option value="">Selecciona...</option>
+              <option value="CLIENT">Cliente (Solicita servicios)</option>
+              <option value="FREELANCER">Freelancer (Ofrece servicios)</option>
+            </select>
+            {errors.role && <p className="text-red-500 text-sm">{errors.role.message}</p>}
+          </div>
+
+          <div>
+            <label className="block text-sm text-[#004F62] mb-1">Contraseña</label>
             <input
               type="password"
-              className="
-                w-full px-4 py-2 rounded-lg 
-                bg-white/60 text-gray-900
-                border border-gray-300 
-                focus:border-[#00C2D8] focus:ring-1 focus:ring-[#00C2D8]
-                outline-none transition
-              "
+              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
               {...reg('password')}
             />
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
 
           <div>
-            <label className="block text-sm text-[#004F62] mb-1">
-              Confirmar contraseña
-            </label>
+            <label className="block text-sm text-[#004F62] mb-1">Confirmar contraseña</label>
             <input
               type="password"
-              className="
-                w-full px-4 py-2 rounded-lg 
-                bg-white/60 text-gray-900
-                border border-gray-300 
-                focus:border-[#00C2D8] focus:ring-1 focus:ring-[#00C2D8]
-                outline-none transition
-              "
+              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
               {...reg('confirm')}
             />
             {errors.confirm && <p className="text-red-500 text-sm">{errors.confirm.message}</p>}
@@ -152,4 +142,3 @@ export function RegisterPage() {
     </div>
   )
 }
-
