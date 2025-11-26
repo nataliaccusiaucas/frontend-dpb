@@ -11,7 +11,8 @@ import {
   Bell,
   LogOut,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Star
 } from "lucide-react"
 
 export function Sidebar({ onToggle }: { onToggle: (v: boolean) => void }) {
@@ -126,9 +127,24 @@ export function Sidebar({ onToggle }: { onToggle: (v: boolean) => void }) {
             collapsed={collapsed}
           />
         )}
+        {user.role === "FREELANCER" && (
+          <SidebarItem
+            to={`/reviews/freelancer/${user.id}`}
+            icon={<Star className="w-5 h-5" />}
+            label="Mis reseñas"
+            collapsed={collapsed}
+          />
+        )}
 
+        {user.role === "ADMIN" && (
+          <SidebarItem
+            to="/admin/reviews"
+            icon={<Star className="w-5 h-5" />}
+            label="Reseñas"
+            collapsed={collapsed}
+          />
+        )}
       </nav>
-
 
       <div className="mt-auto px-4 mb-6 flex flex-col gap-3">
 

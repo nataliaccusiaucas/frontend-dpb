@@ -17,22 +17,31 @@ export function ReviewsList() {
     }
   }, [freelancerId])
 
-  if (loading) return <p className="text-[#E4FCFF]">Cargando…</p>
+  if (loading)
+    return <p className="text-[#004F62] text-center mt-6">Cargando…</p>
 
   return (
-    <div className="mt-6 space-y-4">
+    <div className="max-w-3xl mx-auto mt-10 space-y-5">
       {reviews.map(r => (
         <div
           key={r.id}
-          className="p-4 bg-white/10 border border-white/20 backdrop-blur-lg rounded-xl"
+          className="
+            p-5 rounded-2xl
+            bg-white/85 backdrop-blur-xl
+            border border-[#00E8FF]/15
+            shadow-[0_15px_45px_rgba(0,79,98,0.12)]
+          "
         >
-          <div className="flex justify-between">
-            <p className="text-[#E4FCFF] font-semibold">{r.authorName}</p>
-            <p className="text-[#00E8FF] font-bold">{r.rating} ★</p>
+          <div className="flex justify-between items-center">
+            <p className="font-semibold text-[#003647]">{r.authorName}</p>
+            <span className="text-[#00A6C4] font-bold">{r.rating} ★</span>
           </div>
 
-          <p className="text-gray-200 mt-1">{r.comment}</p>
-          <p className="text-gray-400 text-xs mt-2">{new Date(r.createdAt).toLocaleDateString()}</p>
+          <p className="mt-2 text-[#004F62]/80">{r.comment}</p>
+
+          <p className="text-xs text-[#004F62]/50 mt-2">
+            {new Date(r.createdAt).toLocaleDateString()}
+          </p>
         </div>
       ))}
     </div>
