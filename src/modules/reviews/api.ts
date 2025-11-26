@@ -8,16 +8,20 @@ export async function createReview(input: {
   rating: number
   comment: string
 }): Promise<Review> {
-  const { data } = await api.post("/api/reviews", input)
+  const { data } = await api.post("/reviews", input)
   return data
 }
 
-export async function getReviewsForFreelancer(freelancerId: string): Promise<Review[]> {
-  const { data } = await api.get(`/api/reviews/freelancer/${freelancerId}`)
+export async function getReviewsForFreelancer(
+  freelancerId: string
+): Promise<Review[]> {
+  const { data } = await api.get(`/reviews/freelancer/${freelancerId}`)
   return data
 }
 
-export async function getReviewSummary(freelancerId: string): Promise<ReviewSummary> {
-  const { data } = await api.get(`/api/reviews/freelancer/${freelancerId}/summary`)
+export async function getReviewSummary(
+  freelancerId: string
+): Promise<ReviewSummary> {
+  const { data } = await api.get(`/reviews/freelancer/${freelancerId}/summary`)
   return data
 }

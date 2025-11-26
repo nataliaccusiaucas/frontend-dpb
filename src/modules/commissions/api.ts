@@ -11,8 +11,22 @@ export async function markCommissionAsPaid(id: string): Promise<Commission> {
   return data
 }
 
+export async function listCommissionsForFreelancer(
+  freelancerId: string
+): Promise<Commission[]> {
+  const { data } = await api.get(`/commissions/freelancer/${freelancerId}`)
+  return data
+}
+
 export async function listAllInvoices(): Promise<CommissionInvoice[]> {
   const { data } = await api.get("/commission-invoices")
+  return data
+}
+
+export async function listInvoicesForFreelancer(
+  freelancerId: string
+): Promise<CommissionInvoice[]> {
+  const { data } = await api.get(`/commission-invoices/freelancer/${freelancerId}`)
   return data
 }
 

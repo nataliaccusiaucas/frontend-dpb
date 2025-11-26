@@ -1,28 +1,26 @@
 import { useEffect, useState } from "react"
-import { listAllCommissions } from "../modules/commissions/api"
+import { listCommissionsForFreelancer } from "../modules/commissions/api"
+import { useAuth } from "../modules/auth/AuthContext"
 import type { Commission } from "../modules/commissions/types"
 
 export function CommissionsPage() {
+  const { user } = useAuth()
   const [commissions, setCommissions] = useState<Commission[]>([])
 
   useEffect(() => {
-    listAllCommissions().then(setCommissions)
+    listCommissionsForFreelancer(user.id).then(setCommissions)
   }, [])
 
   return (
     <div className="p-6">
-      <h1 className="font-title text-2xl mb-4">Comisiones</h1>
+      <h1 className="text-2xl font-title mb-4">Mis Comisiones</h1>
 
-      <div className="grid gap-4">
+      <div className="space-y-4">
         {commissions.map(c => (
-          <div
-            key={c.id}
-            className="p-4 rounded-xl bg-white shadow border border-[#00E8FF]/20"
-          >
-            <p><strong>Trabajo:</strong> {c.jobTitle}</p>
-            <p><strong>Monto:</strong> S/{c.amount}</p>
-            <p><strong>Estado:</strong> {c.status}</p>
-            <p><strong>Fecha:</strong> {new Date(c.createdAt).toLocaleDateString()}</p>
+          <div key={c.id} className="p-4 rounded-xl bg-white shadow border">
+            <p className="font-semibold">{c.jobTitle}</p>
+            <p className="text-sm text-gray-600">Comisión: S/ {c.amount}</p>
+            <p className="text-xs mt-1">Estado: {c.status}</p>
           </div>
         ))}
       </div>

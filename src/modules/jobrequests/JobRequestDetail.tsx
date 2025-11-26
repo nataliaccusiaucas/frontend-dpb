@@ -12,24 +12,35 @@ export function JobRequestDetail() {
   }, [id])
 
   if (!job)
-    return <p className="text-[#E4FCFF] mt-6 text-center">Cargando…</p>
+    return <p className="text-[#004F62] mt-6 text-center">Cargando…</p>
 
   return (
-    <article className="max-w-2xl mx-auto mt-6 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl">
-      <h1 className="text-3xl font-semibold text-[#E4FCFF]">{job.title}</h1>
+    <article
+      className="
+        max-w-2xl mx-auto mt-10 p-8 rounded-3xl
+        bg-white/80 backdrop-blur-xl
+        border border-[#00E8FF]/15
+        shadow-[0_20px_60px_rgba(0,79,98,0.12)]
+      "
+    >
+      <h1 className="text-4xl font-title font-bold text-[#003647]">
+        {job.title}
+      </h1>
 
-      <p className="mt-3 text-gray-200 whitespace-pre-line">{job.description}</p>
+      <p className="mt-4 text-[#004F62]/90">
+        {job.description}
+      </p>
 
-      <div className="mt-4 text-[#00E8FF] font-semibold">
+      <div className="mt-5 text-[#00A6C4] font-semibold text-lg">
         Presupuesto: S/ {job.budget.toFixed(2)}
       </div>
 
-      <p className="text-gray-300 text-sm mt-1">Estado: {job.status}</p>
-      <p className="text-gray-300 text-sm">Cliente: {job.clientName}</p>
+      <p className="text-[#004F62]/80 text-sm mt-2">Estado: {job.status}</p>
+      <p className="text-[#004F62]/80 text-sm">Cliente: {job.clientName}</p>
 
       <Link
         to="/jobrequests"
-        className="mt-6 inline-block text-[#00E8FF] hover:underline"
+        className="mt-8 inline-block text-[#00A6C4] font-semibold hover:underline"
       >
         ← Volver
       </Link>

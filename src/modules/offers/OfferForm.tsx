@@ -30,49 +30,77 @@ export function OfferForm() {
       await createOffer({
         proposedBudget: values.proposedBudget,
         proposalText: values.proposalText,
-        jobRequestId: jobRequestId!,      
-        freelancerId: user.id          
+        jobRequestId: jobRequestId!,
+        freelancerId: user.id
       })
 
-      toast("Offer creada correctamente")
+      toast("Oferta enviada con éxito ✨")
       navigate(-1)
     } catch {
-      toast("Error al crear la offer")
+      toast("Error al enviar la oferta")
     }
   }
 
   return (
-    <div className="max-w-xl mx-auto mt-6 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl">
-      <h1 className="text-3xl font-semibold text-[#E4FCFF] mb-5">
+    <div
+      className="
+        max-w-xl mx-auto mt-10 p-10 rounded-3xl
+        bg-white/85 backdrop-blur-xl
+        border border-[#00E8FF]/15
+        shadow-[0_20px_60px_rgba(0,79,98,0.12)]
+      "
+    >
+      <h1 className="text-3xl font-title font-bold text-[#003647] mb-8">
         Enviar oferta
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+
+        {/* PRESUPUESTO */}
         <div>
-          <label className="text-[#E4FCFF] text-sm">Presupuesto propuesto</label>
+          <label className="text-sm text-[#004F62]/90">Presupuesto propuesto (S/)</label>
           <input
             type="number"
             step="0.01"
-            className="w-full bg-transparent border border-white/20 rounded-md px-3 py-2 text-[#E4FCFF]"
+            className="
+              w-full px-4 py-2 rounded-xl
+              bg-white border border-[#00E8FF]/25
+              focus:border-[#00E8FF]
+              text-[#070707] shadow-sm transition
+            "
             {...register("proposedBudget", { valueAsNumber: true })}
           />
-          {errors.proposedBudget && <p className="text-red-400">{errors.proposedBudget.message}</p>}
+          {errors.proposedBudget && (
+            <p className="text-red-500 mt-1 text-sm">{errors.proposedBudget.message}</p>
+          )}
         </div>
 
+        {/* PROPUESTA */}
         <div>
-          <label className="text-[#E4FCFF] text-sm">Propuesta</label>
+          <label className="text-sm text-[#004F62]/90">Propuesta</label>
           <textarea
             rows={4}
-            className="w-full bg-transparent border border-white/20 rounded-md px-3 py-2 text-[#E4FCFF]"
+            className="
+              w-full px-4 py-2 rounded-xl
+              bg-white border border-[#00E8FF]/25
+              focus:border-[#00E8FF]
+              text-[#070707] shadow-sm transition
+            "
             {...register("proposalText")}
           />
-          {errors.proposalText && <p className="text-red-400">{errors.proposalText.message}</p>}
+          {errors.proposalText && (
+            <p className="text-red-500 mt-1 text-sm">{errors.proposalText.message}</p>
+          )}
         </div>
 
         <button
           disabled={isSubmitting}
-          className="w-full py-2 rounded-md bg-[#00E8FF] text-black font-semibold hover:bg-[#00d0e6] transition"
+          className="
+            w-full py-3 rounded-xl
+            bg-[#00E8FF] text-[#070707] font-semibold
+            shadow-[0_10px_30px_rgba(0,232,255,0.4)]
+            hover:bg-[#00C6E0] transition
+          "
         >
           {isSubmitting ? "Enviando…" : "Enviar oferta"}
         </button>

@@ -3,14 +3,11 @@ import { StepsTimeline } from "../components/StepsTimeline";
 export default function Home() {
   return (
     <div className="min-h-screen bg-linear-to-b from-[#E4FCFF] via-white to-[#E4FCFF] text-[#004F62]">
-      {/* HERO */}
       <section className="relative max-w-6xl mx-auto px-6 pt-32 pb-16 md:pb-24">
-        {/* Glow de fondo */}
         <div className="pointer-events-none select-none absolute -top-40 -right-40 w-80 h-80 rounded-full bg-[#00E8FF]/30 blur-3xl opacity-70" />
         <div className="pointer-events-none select-none absolute top-40 -left-20 w-72 h-72 rounded-full bg-[#004F62]/20 blur-3xl opacity-70" />
 
         <div className="grid md:grid-cols-[1.2fr,1fr] gap-10 items-center relative z-10">
-          {/* Texto principal */}
           <div>
             <p className="uppercase tracking-[0.25em] text-xs text-[#004F62]/70 mb-4 font-medium">
               DOERS FOR DREAMERS
@@ -66,7 +63,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card simulando app */}
           <div className="relative">
             <div className="mx-auto w-full max-w-sm">
               <div className="rounded-4x! bg-white/80 backdrop-blur-2xl border border-[#00E8FF]/20 shadow-[0_24px_80px_rgba(7,7,7,0.18)] p-5">
@@ -80,7 +76,6 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-3">
-                  {/* JobRequest mini */}
                   <div className="rounded-2xl border border-[#004F62]/10 bg-[#F8FEFF] p-3">
                     <p className="text-xs uppercase tracking-wide text-[#004F62]/60 mb-1">
                       SOLICITUD
@@ -93,7 +88,6 @@ export default function Home() {
                     </p>
                   </div>
 
-                  {/* Oferta 1 */}
                   <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
                     <div>
                       <p className="text-sm font-semibold text-[#070707]">
@@ -114,7 +108,6 @@ export default function Home() {
                     </button>
                   </div>
 
-                  {/* Oferta 2 */}
                   <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
                     <div>
                       <p className="text-sm font-semibold text-[#070707]">
@@ -135,7 +128,6 @@ export default function Home() {
                     </button>
                   </div>
 
-                  {/* Oferta 3 */}
                   <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
                     <div>
                       <p className="text-sm font-semibold text-[#070707]">
@@ -156,20 +148,19 @@ export default function Home() {
                     </button>
                   </div>
 
-                  {/* Oferta 3 */}
                   <div className="rounded-2xl border border-[#00E8FF]/30 bg-white p-3 flex justify-between items-center">
                     <div>
                       <p className="text-sm font-semibold text-[#070707]">
-                        Ana, Frontend Dev
+                        Carla, Backend Dev
                       </p>
                       <p className="text-xs text-[#004F62]/70">
-                        Entrego en 5 días. Incluye versión mobile.
+                        Entrego 7 días.
                       </p>
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-[#004F62]/60 mb-1">Propuesta</p>
                       <p className="text-sm font-semibold text-[#00A6C4]">
-                        S/ 1,400
+                        S/ 1,100
                       </p>
                     </div>
                     <button className="text-xs font-semibold text-[#00A6C4] underline">
@@ -187,7 +178,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN BENEFICIOS */}
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-10">
           <div>
@@ -221,7 +211,7 @@ export default function Home() {
             </h3>
             <p className="font-body text-sm text-[#004F62]/80">
               Ofertas claras, historial de reseñas y comisiones visibles desde el
-              inicio. Sin letras pequeñas.
+              inicio.
             </p>
           </div>
 
@@ -237,7 +227,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN TIMELINE (PASOS) */}
       <section className="bg-white/80 border-y border-[#E4FCFF] py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -257,7 +246,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN CATEGORÍAS (RESUMIDA) */}
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
         <div className="text-center mb-12">
           <p className="font-body text-xs uppercase tracking-[0.25em] text-[#004F62]/60 mb-3">
@@ -287,14 +275,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA FINAL */}
       <section className="pb-20 px-6">
         <div className="max-w-4xl mx-auto rounded-3xl bg-linear-to-r from-[#004F62] via-[#003A4B] to-[#004F62] text-white p-8 md:p-10 shadow-[0_24px_80px_rgba(0,58,75,0.55)] relative overflow-hidden">
           <div className="absolute -right-24 -bottom-24 w-72 h-72 rounded-full bg-[#00E8FF]/30 blur-3xl" />
           <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <h2 className="font-title text-2xl md:text-3xl font-bold mb-2">
-                ¿Lista para tu siguiente proyecto?
+                ¿Listo para tu siguiente proyecto?
               </h2>
               <p className="font-body text-sm md:text-base text-[#E4FCFF]/90">
                 Regístrate como cliente o freelancer y empieza a construir tu

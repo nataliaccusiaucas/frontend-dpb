@@ -1,7 +1,9 @@
 import api from "../../lib/axios"
 import type { FreelancerProfile } from "./types"
 
-export async function getFreelancerProfile(freelancerId: string): Promise<FreelancerProfile> {
+export async function getFreelancerProfile(
+  freelancerId: string
+): Promise<FreelancerProfile> {
   const { data } = await api.get(`/freelancers/${freelancerId}/profile`)
   return data
 }

@@ -1,6 +1,7 @@
 export type Review = {
   id: string
   authorName: string
+  clientName?: string
   targetName: string
   jobTitle: string
   rating: number

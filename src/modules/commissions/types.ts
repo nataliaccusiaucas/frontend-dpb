@@ -11,6 +11,6 @@ export type CommissionInvoice = {
   freelancerName: string
   amount: number
   issuedAt: string
-  dueDate: string 
+  dueDate: string
   status: "PENDING" | "PAID" | "OVERDUE" | string
 }

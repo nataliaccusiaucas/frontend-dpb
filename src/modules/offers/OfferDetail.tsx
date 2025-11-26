@@ -25,7 +25,7 @@ export function OfferDetail() {
       </p>
 
       <div className="mt-4 text-[#00E8FF] font-semibold">
-        Presupuesto propuesto: S/ {offer.proposedBudget.toFixed(2)}
+        Presupuesto: S/ {offer.proposedBudget.toFixed(2)}
       </div>
 
       <p className="text-gray-300 text-sm mt-2">Estado: {offer.status}</p>

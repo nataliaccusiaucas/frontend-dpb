@@ -11,13 +11,18 @@ export async function createOffer(input: {
   return data
 }
 
+export async function getOffer(id: string): Promise<Offer> {
+  const { data } = await api.get(`/offers/${id}`)
+  return data
+}
+
 export async function listOffers(): Promise<Offer[]> {
   const { data } = await api.get("/offers")
   return data
 }
 
-export async function listOffersByJobRequest(jobRequestId: string): Promise<Offer[]> {
-  const { data } = await api.get(`/offers/job-request/${jobRequestId}`)
+export async function listOffersForClient(clientId: string): Promise<Offer[]> {
+  const { data } = await api.get(`/offers/client/${clientId}`)
   return data
 }
 
@@ -26,19 +31,12 @@ export async function listOffersByFreelancer(freelancerId: string): Promise<Offe
   return data
 }
 
-export async function listOffersForClient(clientId: string) {
-  const { data } = await api.get(`/offers/client/${clientId}`)
-  return data
-}
-
-export async function updateOfferStatus(offerId: string, status: string): Promise<Offer> {
+export async function updateOfferStatus(
+  offerId: string,
+  status: "ACCEPTED" | "REJECTED"
+): Promise<Offer> {
   const { data } = await api.patch(`/offers/${offerId}/status`, null, {
-    params: { status },
+    params: { status }
   })
-  return data
-}
-
-export async function getOffer(id: string): Promise<Offer> {
-  const { data } = await api.get(`/offers/${id}`)
   return data
 }

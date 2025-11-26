@@ -1,44 +1,59 @@
 import { useEffect, useState } from "react"
-import { listOffers } from "./api"
+import { listOffersForClient } from "./api"
 import { Link } from "react-router-dom"
 import type { Offer } from "./types"
+import { useAuth } from "../auth/AuthContext"
 
 export function OffersList() {
+  const { user } = useAuth()
   const [offers, setOffers] = useState<Offer[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    listOffers().then(data => {
+    listOffersForClient(user.id).then(data => {
       setOffers(data)
       setLoading(false)
     })
   }, [])
 
   return (
-    <section className="max-w-4xl mx-auto mt-6 space-y-6">
-      <h1 className="text-3xl font-semibold text-[#E4FCFF]">Offers</h1>
+    <section className="max-w-5xl mx-auto mt-10 space-y-6">
+
+      <h1 className="text-4xl font-title font-bold text-[#003647]">
+        Ofertas recibidas
+      </h1>
 
       {loading ? (
-        <p className="text-[#E4FCFF]">Cargando…</p>
+        <p className="text-[#004F62] text-lg">Cargando…</p>
       ) : (
-        <ul className="grid gap-4">
+        <ul className="grid gap-6">
           {offers.map(o => (
             <li
               key={o.id}
-              className="p-5 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20"
+              className="
+                p-6 rounded-3xl
+                bg-white/80 backdrop-blur-xl
+                border border-[#00E8FF]/15
+                shadow-[0_20px_60px_rgba(0,79,98,0.12)]
+                hover:shadow-[0_25px_70px_rgba(0,79,98,0.18)]
+                transition
+              "
             >
               <div className="flex items-start">
-                <h2 className="text-xl font-semibold text-[#E4FCFF]">
+                <h2 className="text-xl font-title font-semibold text-[#003647]">
                   {o.jobRequestTitle}
                 </h2>
-                <span className="ml-auto text-sm font-bold text-[#00E8FF]">
+
+                <span className="ml-auto text-sm font-bold text-[#00A6C4]">
                   S/ {o.proposedBudget.toFixed(2)}
                 </span>
               </div>
 
-              <p className="text-gray-200 mt-1">{o.proposalText}</p>
+              <p className="text-[#004F62]/80 mt-2 text-sm leading-relaxed">
+                {o.proposalText}
+              </p>
 
-              <div className="mt-2 text-xs text-gray-300">
+              <div className="mt-3 text-xs text-[#004F62]/70">
                 Estado: {o.status}  
                 <br />
                 Freelancer: {o.freelancerName}
@@ -46,7 +61,7 @@ export function OffersList() {
 
               <Link
                 to={`/offers/${o.id}`}
-                className="text-[#00E8FF] text-sm mt-2 inline-block hover:underline"
+                className="text-[#00A6C4] text-sm mt-3 inline-block font-semibold hover:underline"
               >
                 Ver detalles →
               </Link>

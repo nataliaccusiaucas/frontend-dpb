@@ -15,10 +15,7 @@ export function InvoicesPage() {
 
       <div className="grid gap-4">
         {invoices.map(inv => (
-          <div
-            key={inv.id}
-            className="p-4 rounded-xl bg-white shadow border border-[#00E8FF]/20"
-          >
+          <div key={inv.id} className="p-4 rounded-xl bg-white shadow border border-[#00E8FF]/20">
             <p><strong>Freelancer:</strong> {inv.freelancerName}</p>
             <p><strong>Monto:</strong> S/{inv.amount}</p>
             <p><strong>Emitida:</strong> {new Date(inv.issuedAt).toLocaleDateString()}</p>
