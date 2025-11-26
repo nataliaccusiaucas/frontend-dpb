@@ -14,7 +14,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-
     const [user, setUser] = useState<any | null>(null)
     const [token, setToken] = useState<string | null>(localStorage.getItem('access_token'))
     const [loading, setLoading] = useState(true)
@@ -46,12 +45,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     async function register(email: string, password: string, name: string) {
-        await api.post('/auth/register', {
+        const { data } = await api.post('/auth/register', {
             name,
             email,
             password,
             role: 'CLIENT',
         })
+
+        if (data?.token) {
+            localStorage.setItem('access_token', data.token)
+            localStorage.setItem('user_email', email)
+            setToken(data.token)
+            setUser({ email })
+        }
     }
 
     function logout() {
