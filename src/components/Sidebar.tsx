@@ -94,7 +94,7 @@ export function Sidebar({ onToggle }: { onToggle: (v: boolean) => void }) {
         />
 
         <SidebarItem
-          to={`/freelancers/${user.id}/profile`}
+          to={user.role === "FREELANCER" ? `/freelancers/${user.id}/profile` : "/profile"}
           icon={<User />}
           label="Profile"
           collapsed={collapsed}

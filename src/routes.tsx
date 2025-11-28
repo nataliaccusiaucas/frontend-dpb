@@ -32,6 +32,7 @@ import { ChatRoomPage } from "./modules/chat/ChatRoomPage"
 
 
 import { Dashboard } from "./pages/Dashboard"
+import { UserProfilePage } from "./pages/UserProfilePage"
 
 export const AppRoutes = () => {
   return (
@@ -59,6 +60,7 @@ export const AppRoutes = () => {
 
           <Route path="/freelancers/:id/profile" element={<FreelancerProfileView />} />
           <Route path="/freelancers/:id/profile/edit" element={<FreelancerProfileEdit />} />
+          <Route path="/profile" element={<UserProfilePage />} />
 
           <Route path="/reviews/new/:jobRequestId/:freelancerId" element={<ReviewForm />} />
           <Route path="/reviews/freelancer/:freelancerId" element={<ReviewsList />} />
