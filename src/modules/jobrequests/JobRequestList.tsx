@@ -23,7 +23,7 @@ export function JobRequestList() {
         </h1>
 
         <Link
-          to="/jobrequests/new"
+          to="/job-requests/new"
           className="
             ml-auto px-5 py-2.5 rounded-xl
             bg-[#00E8FF] text-[#070707] font-semibold
@@ -72,7 +72,7 @@ export function JobRequestList() {
               </div>
 
               <Link
-                to={`/jobrequests/${o.id}`}
+                to={`/job-requests/${o.id}`}
                 className="mt-3 inline-block text-[#00A6C4] text-sm font-semibold hover:underline"
               >
                 Ver detalles →

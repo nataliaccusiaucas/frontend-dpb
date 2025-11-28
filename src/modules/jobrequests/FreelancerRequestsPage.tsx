@@ -84,7 +84,7 @@ export function FreelancerRequestsPage() {
               <p className="text-[#004F62]/80 mt-2 text-sm">{r.description}</p>
 
               <Link
-                to={`/jobrequests/${r.id}`}
+                to={`/job-requests/${r.id}`}
                 className="mt-3 inline-block text-[#00A6C4] text-sm font-semibold hover:underline"
               >
                 Ver detalles →

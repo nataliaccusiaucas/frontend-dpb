@@ -39,7 +39,7 @@ export function JobRequestDetail() {
       <p className="text-[#004F62]/80 text-sm">Cliente: {job.clientName}</p>
 
       <Link
-        to="/jobrequests"
+        to="/job-requests"
         className="mt-8 inline-block text-[#00A6C4] font-semibold hover:underline"
       >
         ← Volver

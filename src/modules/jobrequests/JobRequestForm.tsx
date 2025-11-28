@@ -56,7 +56,7 @@ export function JobRequestForm() {
         clientId: user.id!
       })
       toast("Solicitud creada")
-      navigate("/jobrequests")
+      navigate("/job-requests")
     } catch (e) {
       console.error(e)
       toast("Error al crear la solicitud")
