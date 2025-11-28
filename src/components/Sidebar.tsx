@@ -80,7 +80,7 @@ export function Sidebar({ onToggle }: { onToggle: (v: boolean) => void }) {
         />
 
         <SidebarItem
-          to="/jobrequests"
+          to="/job-requests"
           icon={<FileText />}
           label="Requests"
           collapsed={collapsed}

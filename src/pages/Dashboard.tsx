@@ -64,7 +64,7 @@ export function Dashboard() {
 
           {isClient && (
             <Link
-              to="/jobrequests/new"
+              to="/job-requests/new"
               className="
                 px-6 py-3 rounded-full
                 bg-[#00E8FF]
@@ -91,8 +91,6 @@ export function Dashboard() {
         </div>
       </header>
 
-
-      {/* TARJETAS DE ESTADÍSTICAS */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
         <InfoCard label="Solicitudes" value={jobRequests.length} />
         <InfoCard label="Ofertas" value={offers.length} />
