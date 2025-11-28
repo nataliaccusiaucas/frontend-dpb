@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
-import { useAuth } from "../auth/AuthContext"
 import { listMessages, sendMessage } from "./api"
 import type { Message } from "./types"
+import { useAuthRequired } from "../auth/useAuthRequired"
 
 export function ChatRoomPage() {
   const { conversationId } = useParams()
-  const { user } = useAuth()
+  const  user  = useAuthRequired()
   const [messages, setMessages] = useState<Message[]>([])
   const [text, setText] = useState("")
   const [loading, setLoading] = useState(true)
