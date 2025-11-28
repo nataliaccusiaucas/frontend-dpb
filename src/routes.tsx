@@ -48,9 +48,9 @@ export const AppRoutes = () => {
 
           <Route path="/dashboard" element={<Dashboard />} />
 
-          <Route path="/jobrequests" element={<JobRequestList />} />
-          <Route path="/jobrequests/new" element={<JobRequestForm />} />
-          <Route path="/jobrequests/:id" element={<JobRequestDetail />} />
+          <Route path="/job-requests" element={<JobRequestList />} />
+          <Route path="/job-requests/new" element={<JobRequestForm />} />
+          <Route path="/job-requests/:id" element={<JobRequestDetail />} />
           <Route path="/requests-feed" element={<FreelancerRequestsPage/>}/>
 
           <Route path="/offers" element={<ClientOfferFeed />} />
