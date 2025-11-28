@@ -1,7 +1,7 @@
-import { useAuth } from "../modules/auth/AuthContext"
+import { useAuthRequired } from "../modules/auth/useAuthRequired"
 
 export function UserProfilePage() {
-  const { user } = useAuth()
+  const user  = useAuthRequired()
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-8 bg-white/80 rounded-3xl border border-[#00E8FF]/20">

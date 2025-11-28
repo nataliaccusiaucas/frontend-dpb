@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { createReview } from "./api"
 import { useToast } from "../../components/ui/Toaster"
 import { useNavigate, useParams } from "react-router-dom"
-import { useAuth } from "../auth/AuthContext"
 import { StarRating } from "../../components/StarRating"
+import { useAuthRequired } from "../auth/useAuthRequired"
 
 
 const schema = z.object({
@@ -17,7 +17,7 @@ type FormValues = z.infer<typeof schema>
 
 export function ReviewForm() {
   const { jobRequestId, freelancerId } = useParams()
-  const { user } = useAuth()
+  const user  = useAuthRequired()
   const navigate = useNavigate()
   const { toast } = useToast()
 

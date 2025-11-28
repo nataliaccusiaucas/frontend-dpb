@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { listCommissionsForFreelancer } from "../modules/commissions/api"
-import { useAuth } from "../modules/auth/AuthContext"
 import type { Commission } from "../modules/commissions/types"
+import { useAuthRequired } from "../modules/auth/useAuthRequired"
 
 export function CommissionsPage() {
-  const { user } = useAuth()
+  const  user  = useAuthRequired()
   const [commissions, setCommissions] = useState<Commission[]>([])
 
   useEffect(() => {

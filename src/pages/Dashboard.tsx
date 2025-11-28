@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { useAuth } from "../modules/auth/AuthContext"
 import { useEffect, useState, ReactNode } from "react"
 
 import { listJobRequests } from "../modules/jobrequests/api"
@@ -8,10 +7,11 @@ import { useNotifications } from "../modules/notification/useNotifications"
 
 import type { JobRequest } from "../modules/jobrequests/types"
 import type { Offer } from "../modules/offers/types"
+import { useAuthRequired } from "../modules/auth/useAuthRequired"
 
 
 export function Dashboard() {
-  const { user } = useAuth()
+  const  user  = useAuthRequired()
   const { unreadCount } = useNotifications()
 
   const [jobRequests, setJobRequests] = useState<JobRequest[]>([])
@@ -60,7 +60,6 @@ export function Dashboard() {
             : "Supervisa tus propuestas, mejora tu perfil y revisa tus próximas oportunidades."}
         </p>
 
-        {/* BOTONES */}
         <div className="flex gap-4 mt-6">
 
           {isClient && (

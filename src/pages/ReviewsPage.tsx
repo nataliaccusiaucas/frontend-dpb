@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { getReviewsForFreelancer } from "../modules/reviews/api"
 import type { Review } from "../modules/reviews/types"
-import { useAuth } from "../modules/auth/AuthContext"
+import { useAuthRequired } from "../modules/auth/useAuthRequired"
 
 export function ReviewsPage() {
-  const { user } = useAuth()
+  const  user  = useAuthRequired()
   const [reviews, setReviews] = useState<Review[]>([])
 
   useEffect(() => {

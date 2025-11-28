@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { listOffersForClient, updateOfferStatus } from "./api"
-import { useAuth } from "../auth/AuthContext"
 import { useToast } from "../../components/ui/Toaster"
+import { useAuthRequired } from "../auth/useAuthRequired"
 
 export function ClientOfferFeed() {
-  const { user } = useAuth()
+  const  user  = useAuthRequired()
   const { toast } = useToast()
 
   const [offers, setOffers] = useState<any[]>([])

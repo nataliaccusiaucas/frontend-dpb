@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { listOffersForClient } from "./api"
 import { Link } from "react-router-dom"
 import type { Offer } from "./types"
-import { useAuth } from "../auth/AuthContext"
+import { useAuthRequired } from "../auth/useAuthRequired"
 
 export function OffersList() {
-  const { user } = useAuth()
+  const  user  = useAuthRequired()
   const [offers, setOffers] = useState<Offer[]>([])
   const [loading, setLoading] = useState(true)
 

@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { createOffer } from "./api"
 import { useToast } from "../../components/ui/Toaster"
 import { useNavigate, useParams } from "react-router-dom"
-import { useAuth } from "../auth/AuthContext"
+import { useAuthRequired } from "../auth/useAuthRequired"
 
 const schema = z.object({
   proposedBudget: z.number().positive(),
@@ -15,7 +15,7 @@ type FormValues = z.infer<typeof schema>
 
 export function OfferForm() {
   const { jobRequestId } = useParams()
-  const { user } = useAuth()
+  const  user  = useAuthRequired()
   const navigate = useNavigate()
   const { toast } = useToast()
 
