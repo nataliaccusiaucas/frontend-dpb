@@ -15,6 +15,7 @@ export type AuthContextType = {
     phone: string,
     skills: string[]
   ) => Promise<void>;
+  updateUser: (next: User) => void;
   logout: () => void;
 };
 
@@ -77,6 +78,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  function updateUser(next: User) {
+    setUser(next);
+    localStorage.setItem("user_data", JSON.stringify(next));
+  }
+
   function logout() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user_data");
@@ -86,7 +92,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, token, loading, login, register, logout }}
+      value={{ user, token, loading, login, register, updateUser, logout }}
     >
       {children}
     </AuthContext.Provider>

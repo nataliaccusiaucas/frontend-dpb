@@ -22,3 +22,14 @@ export async function refreshToken(refreshToken: string) {
     const { data: response } = await api.post('/auth/refresh', { refreshToken })
     return response
 }
+
+export async function uploadAvatar(userId: string, file: File) {
+    const formData = new FormData()
+    formData.append("avatar", file)
+
+    const { data } = await api.post(`/users/${userId}/avatar`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+    })
+
+    return data as { avatarUrl: string }
+}
