@@ -45,15 +45,24 @@ export function UserProfilePage() {
           className="w-20 h-20 rounded-full object-cover border border-[#00E8FF]/40"
         />
         <div className="space-y-2">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const next = e.target.files?.[0] || null
-              setFile(next)
-              if (next) setPreview(URL.createObjectURL(next))
-            }}
-          />
+          <label className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#00E8FF]/40 text-[#004F62] cursor-pointer bg-white hover:bg-[#E4FCFF] transition">
+            <span>Seleccionar imagen</span>
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                const next = e.target.files?.[0] || null
+                setFile(next)
+                if (next) setPreview(URL.createObjectURL(next))
+              }}
+            />
+          </label>
+          {file && (
+            <p className="text-xs text-[#004F62]/80">
+              Seleccionado: {file.name}
+            </p>
+          )}
           <button
             onClick={handleUpload}
             disabled={uploading}
