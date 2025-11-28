@@ -41,7 +41,7 @@ export function JobRequestForm() {
 
   const onSubmit = async (values: FormValues) => {
     try {
-      await createJobRequest({ ...values, clientId: user.id })
+      await createJobRequest({ ...values, clientId: user.id! })
       toast("Solicitud creada")
       navigate("/jobrequests")
     } catch {
