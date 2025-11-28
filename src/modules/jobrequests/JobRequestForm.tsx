@@ -34,6 +34,8 @@ export function JobRequestForm() {
     })
 
   const { user } = useAuth()
+  if (!user) return null
+
   const navigate = useNavigate()
   const { toast } = useToast()
 

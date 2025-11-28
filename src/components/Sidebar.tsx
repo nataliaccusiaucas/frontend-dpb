@@ -17,6 +17,8 @@ import {
 
 export function Sidebar({ onToggle }: { onToggle: (v: boolean) => void }) {
   const { user, logout } = useAuth()
+  if (!user) return null
+
   const { unreadCount } = useNotifications()
   const navigate = useNavigate()
 

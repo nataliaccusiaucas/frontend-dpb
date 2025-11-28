@@ -20,93 +20,110 @@ export function OfferCard({ offer, onAccept, onReject }: OfferCardProps) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="rounded-3xl bg-white/90 backdrop-blur-xl border border-[#00E8FF]/20 shadow-[0_18px_50px_rgba(0,79,98,0.10)] p-6">
+    <div className="
+      w-full 
+      rounded-3xl 
+      bg-white/90 
+      backdrop-blur-xl 
+      border border-[#00E8FF]/20 
+      shadow-[0_18px_60px_rgba(0,79,98,0.12)] 
+      p-6 
+      space-y-4 
+      transition-transform
+      hover:-translate-y-0.5
+    ">
       
+      {/* HEADER */}
+      <div className="flex items-start justify-between gap-4">
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        {/* FOTO + DATOS */}
+        <div className="flex items-start gap-4">
           <img
-            src="https://i.pravatar.cc/100"
-            className="w-12 h-12 rounded-full border border-[#00E8FF]/30"
+            src="https://i.pravatar.cc/150"
+            className="w-14 h-14 rounded-full border border-[#00E8FF]/40 object-cover"
           />
 
-          <div>
-            <h3 className="font-title text-[#070707] text-sm font-semibold">
+          <div className="max-w-[220px]">
+            <h3 className="font-title text-[#070707] text-sm font-semibold leading-tight">
               {offer.freelancerName}
-              {offer.freelancerTitle ? ` — ${offer.freelancerTitle}` : ""}
+              {offer.freelancerTitle ? (
+                <span className="font-normal"> — {offer.freelancerTitle}</span>
+              ) : null}
             </h3>
+
             {offer.freelancerDescription && (
-              <p className="text-xs text-[#004F62]/70">{offer.freelancerDescription}</p>
+              <p className="text-xs text-[#004F62]/70 mt-1 leading-relaxed">
+                {offer.freelancerDescription}
+              </p>
             )}
           </div>
         </div>
 
+        {/* PRECIO */}
         <div className="text-right">
-          <p className="text-[10px] text-[#004F62]/60">Propuesta</p>
-          <p className="text-lg font-bold text-[#00A6C4]">
+          <p className="text-[11px] text-[#004F62]/60">Propuesta</p>
+          <p className="text-[#00A6C4] font-bold text-lg">
             S/ {offer.proposedBudget.toFixed(2)}
           </p>
         </div>
       </div>
 
+      {/* VER MÁS */}
       <button
         onClick={() => setOpen(!open)}
-        className="text-xs font-semibold text-[#00A6C4] underline mt-3"
+        className="text-xs font-semibold text-[#00A6C4] underline"
       >
         {open ? "Ver menos" : "Ver más"}
       </button>
 
+      {/* DETALLES */}
       {open && (
-        <div className="mt-4 bg-[#F8FEFF] border border-[#00E8FF]/20 p-4 rounded-2xl">
-          
-          {offer.freelancerDescription && (
-            <>
-              <p className="text-sm font-semibold text-[#070707] mb-1">Experiencia</p>
-              <p className="text-xs text-[#004F62]/70">
-                {offer.freelancerDescription}
-              </p>
-            </>
-          )}
+        <div className="mt-2 bg-[#F8FEFF] border border-[#00E8FF]/20 p-4 rounded-2xl space-y-3">
 
           {offer.freelancerSkills && (
-            <>
-              <p className="text-sm font-semibold text-[#070707] mt-3 mb-1">Skills</p>
+            <div>
+              <p className="text-sm font-semibold text-[#070707]">Skills</p>
               <p className="text-xs text-[#004F62]/70">{offer.freelancerSkills}</p>
-            </>
+            </div>
           )}
 
           {offer.freelancerPortfolioUrl && (
             <a
               href={offer.freelancerPortfolioUrl}
               target="_blank"
-              className="text-xs text-[#00A6C4] underline block mt-3"
+              className="text-xs text-[#00A6C4] underline block"
             >
-              Portafolio →
+              Ver portafolio →
             </a>
           )}
 
-          <p className="text-xs text-[#004F62]/60 mt-3">
+          <p className="text-xs text-[#004F62]/70">
             Ubicación: {offer.freelancerLocation || "No especificado"}
           </p>
         </div>
       )}
 
-      <div className="flex gap-3 mt-5">
+      {/* BOTONES */}
+      <div className="flex gap-4 pt-2">
+
         <button
           onClick={() => onAccept(offer.id)}
-          className="flex-1 py-2 rounded-xl bg-[#00E8FF] text-black font-semibold shadow-[0_10px_30px_rgba(0,232,255,0.3)]"
+          className="flex-1 py-3 rounded-xl bg-[#00E8FF] text-[#004F62] font-semibold 
+            shadow-[0_10px_30px_rgba(0,232,255,0.35)]
+            hover:bg-[#00D2EB] transition"
         >
           Aceptar
         </button>
 
         <button
           onClick={() => onReject(offer.id)}
-          className="flex-1 py-2 rounded-xl border border-red-300 bg-red-50 text-red-500 font-semibold"
+          className="flex-1 py-3 rounded-xl border border-red-300 bg-red-50 text-red-500 font-semibold
+            hover:bg-red-100 transition"
         >
           Rechazar
         </button>
-      </div>
 
+      </div>
     </div>
   )
 }

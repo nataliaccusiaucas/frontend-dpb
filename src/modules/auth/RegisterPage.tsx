@@ -69,7 +69,7 @@ export function RegisterPage() {
               Nombre completo
             </label>
             <input
-              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
+              className="w-full px-4 py-2 rounded-lg bg-white text-[#004F62] border border-gray-300"
               {...reg('name')}
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
@@ -78,7 +78,7 @@ export function RegisterPage() {
           <div>
             <label className="block text-sm text-[#004F62] mb-1">Correo electrónico</label>
             <input
-              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
+              className="w-full px-4 py-2 rounded-lg bg-white text-[#004F62] border border-gray-300"
               {...reg('email')}
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -87,7 +87,7 @@ export function RegisterPage() {
           <div>
             <label className="block text-sm text-[#004F62] mb-1">Tipo de cuenta</label>
             <select
-              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
+              className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 text-[#004F62] focus:outline-none focus:ring-2 focus:ring-[#00E8FF]/50"
               {...reg('role')}
             >
               <option value="">Selecciona...</option>
@@ -101,7 +101,7 @@ export function RegisterPage() {
             <label className="block text-sm text-[#004F62] mb-1">Contraseña</label>
             <input
               type="password"
-              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
+              className="w-full px-4 py-2 rounded-lg bg-white text-[#004F62] border border-gray-300"
               {...reg('password')}
             />
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
@@ -111,7 +111,7 @@ export function RegisterPage() {
             <label className="block text-sm text-[#004F62] mb-1">Confirmar contraseña</label>
             <input
               type="password"
-              className="w-full px-4 py-2 rounded-lg bg-white/60 border border-gray-300"
+              className="w-full px-4 py-2 rounded-lg bg-white text-[#004F62] border border-gray-300"
               {...reg('confirm')}
             />
             {errors.confirm && <p className="text-red-500 text-sm">{errors.confirm.message}</p>}
