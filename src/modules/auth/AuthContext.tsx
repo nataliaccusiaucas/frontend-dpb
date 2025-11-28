@@ -1,100 +1,100 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import api from '../../lib/axios'
+import { createContext, useContext, useState, useEffect } from "react";
+import api from "../../lib/axios";
+import { User } from "../../types";
 
-interface User {
-  id: string
-  name: string
-  email: string
-  role: string
-}
+export type AuthContextType = {
+  user: User | null;
+  token: string | null;
+  loading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  register: (
+    name: string,
+    email: string,
+    password: string,
+    role: "CLIENT" | "FREELANCER",
+    phone: string
+  ) => Promise<void>;
+  logout: () => void;
+};
 
-interface AuthContextType {
-  user: User | null
-  token: string | null
-  loading: boolean
-  login: (email: string, password: string) => Promise<void>
-  register: (name: string, email: string, password: string, role: string) => Promise<void>
-  logout: () => void
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [token, setToken] = useState<string | null>(localStorage.getItem('access_token'))
-  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("access_token")
+  );
+  const [loading, setLoading] = useState(true);
 
+  // ---- RESTAURA SESIÓN ----
   useEffect(() => {
-    const savedToken = localStorage.getItem('access_token')
-    const savedUser = localStorage.getItem('user_data')
+    const savedToken = localStorage.getItem("access_token");
+    const savedUser = localStorage.getItem("user_data");
 
     if (savedToken && savedUser) {
-      setToken(savedToken)
-      setUser(JSON.parse(savedUser) as User)
+      setToken(savedToken);
+      setUser(JSON.parse(savedUser));
     }
 
-    setLoading(false)
-  }, [])
+    setLoading(false);
+  }, []);
 
+  // ---- LOGIN ----
   async function login(email: string, password: string) {
-    const { data } = await api.post('/auth/login', { email, password })
+    const { data } = await api.post("/auth/login", { email, password });
 
-    if (!data.token || !data.user) throw new Error("Respuesta inválida del backend")
+    if (data.token && data.user) {
+      localStorage.setItem("access_token", data.token);
+      localStorage.setItem("user_data", JSON.stringify(data.user));
 
-    const userData: User = {
-      id: data.user.id,
-      name: data.user.name,
-      email: data.user.email,
-      role: data.user.role,
+      setToken(data.token);
+      setUser(data.user);
     }
-
-    localStorage.setItem('access_token', data.token)
-    localStorage.setItem('user_data', JSON.stringify(userData))
-
-    setToken(data.token)
-    setUser(userData)
   }
 
-  async function register(name: string, email: string, password: string, role: string) {
-    const { data } = await api.post('/auth/register', {
+  // ---- REGISTER ----
+  async function register(
+    name: string,
+    email: string,
+    password: string,
+    role: "CLIENT" | "FREELANCER",
+    phone: string
+  ) {
+    const { data } = await api.post("/auth/register", {
       name,
       email,
       password,
       role,
-    })
+      phone,
+    });
 
-    if (!data.token || !data.user) throw new Error("Respuesta inválida del backend")
-
-    const userData: User = {
-      id: data.user.id,
-      name: data.user.name,
-      email: data.user.email,
-      role: data.user.role,
+    if (data.token && data.user) {
+      localStorage.setItem("access_token", data.token);
+      localStorage.setItem("user_data", JSON.stringify(data.user));
+      setToken(data.token);
+      setUser(data.user);
     }
-
-    localStorage.setItem('access_token', data.token)
-    localStorage.setItem('user_data', JSON.stringify(userData))
-
-    setToken(data.token)
-    setUser(userData)
   }
 
+  // ---- LOGOUT ----
   function logout() {
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('user_data')
-    setToken(null)
-    setUser(null)
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user_data");
+    setToken(null);
+    setUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout }}>
+    <AuthContext.Provider
+      value={{ user, token, loading, login, register, logout }}
+    >
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
 export function useAuth() {
-  const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error('useAuth must be used within an AuthProvider')
-  return ctx
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be inside AuthProvider");
+  return ctx;
 }
