@@ -27,16 +27,21 @@ const CATEGORIES = [
 ]
 
 export function JobRequestForm() {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, setValue} =
-    useForm<FormValues>({
-      resolver: zodResolver(schema),
-      defaultValues: { 
-        title: "", 
-        description: "", 
-        budget: 0,
-        categories: []
-      }
-    })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setValue,
+    watch
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { 
+      title: "", 
+      description: "", 
+      budget: 0,
+      categories: []
+    }
+  })
 
   const { user } = useAuth()
   if (!user) return null
@@ -92,16 +97,52 @@ export function JobRequestForm() {
 
         <div>
           <label className="text-sm text-[#004F62]">Categorías (puedes elegir varias)</label>
-            <select multiple onChange={(e) => {
-                const selected = Array.from(e.target.selectedOptions).map(o => o.value)
-                setValue("categories", selected, { shouldValidate: true })
-              }}
-              className="w-full px-4 py-2 rounded-xl bg-white border border-[#00E8FF]/20 focus:border-[#00E8FF] text-[#070707] shadow-sm transition h-40"
-            >
-              {CATEGORIES.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
+
+          <div className="
+            mt-2 w-full rounded-xl bg-white border border-[#00E8FF]/20
+            shadow-sm cursor-pointer p-3 select-none
+          ">
+
+            <div className="flex flex-wrap gap-2 mb-2">
+              {watch("categories")?.map((cat: string) => (
+                <span
+                  key={cat}
+                  className="px-3 py-1 text-xs rounded-full bg-[#00E8FF]/20 text-[#004F62]"
+                >
+                  {cat}
+                </span>
               ))}
-            </select>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto pr-2">
+              {CATEGORIES.map((cat: string) => (
+                <label
+                  key={cat}
+                  className="
+                    flex items-center gap-2 text-sm text-[#004F62]/80 
+                    bg-white hover:bg-[#E4FCFF] p-2 rounded-lg border border-[#00E8FF]/10
+                    cursor-pointer transition
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    value={cat}
+                    className="accent-[#00C2D8]"
+                    onChange={(e) => {
+                      const checked = e.target.checked
+                      const current: string[] = watch("categories") || []
+                      const updated = checked
+                        ? [...current, cat]
+                        : current.filter((item: string) => item !== cat)
+
+                      setValue("categories", updated, { shouldValidate: true })
+                    }}
+                  />
+                  {cat}
+                </label>
+              ))}
+            </div>
+          </div>
 
           {errors.categories && (
             <p className="text-red-500 text-sm mt-1">{errors.categories.message}</p>
@@ -121,7 +162,10 @@ export function JobRequestForm() {
 
         <button
           disabled={isSubmitting}
-          className="w-full py-3 rounded-full bg-[#00E8FF] text-[#070707] font-semibold shadow-[0_10px_30px_rgba(0,232,255,0.4)] hover:bg-[#00C6E0] transition"
+          className="
+            w-full py-3 rounded-full bg-[#00E8FF] text-[#070707] font-semibold 
+            shadow-[0_10px_30px_rgba(0,232,255,0.4)] hover:bg-[#00C6E0] transition
+          "
         >
           {isSubmitting ? "Guardando…" : "Crear solicitud"}
         </button>
