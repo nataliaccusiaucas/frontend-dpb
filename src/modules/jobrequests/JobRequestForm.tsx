@@ -27,7 +27,7 @@ const CATEGORIES = [
 ]
 
 export function JobRequestForm() {
-  const { register, handleSubmit, formState: { errors, isSubmitting }} =
+  const { register, handleSubmit, formState: { errors, isSubmitting }, setValue} =
     useForm<FormValues>({
       resolver: zodResolver(schema),
       defaultValues: { 
@@ -92,15 +92,16 @@ export function JobRequestForm() {
 
         <div>
           <label className="text-sm text-[#004F62]">Categorías (puedes elegir varias)</label>
-          <select
-            multiple
-            {...register("categories")}
-            className="w-full px-4 py-2 rounded-xl bg-white border border-[#00E8FF]/20 focus:border-[#00E8FF] text-[#070707] shadow-sm transition h-40"
-          >
-            {CATEGORIES.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
+            <select multiple onChange={(e) => {
+                const selected = Array.from(e.target.selectedOptions).map(o => o.value)
+                setValue("categories", selected, { shouldValidate: true })
+              }}
+              className="w-full px-4 py-2 rounded-xl bg-white border border-[#00E8FF]/20 focus:border-[#00E8FF] text-[#070707] shadow-sm transition h-40"
+            >
+              {CATEGORIES.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
 
           {errors.categories && (
             <p className="text-red-500 text-sm mt-1">{errors.categories.message}</p>
