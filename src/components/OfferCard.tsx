@@ -33,10 +33,8 @@ export function OfferCard({ offer, onAccept, onReject }: OfferCardProps) {
       hover:-translate-y-0.5
     ">
       
-      {/* HEADER */}
       <div className="flex items-start justify-between gap-4">
 
-        {/* FOTO + DATOS */}
         <div className="flex items-start gap-4">
           <img
             src="https://i.pravatar.cc/150"
@@ -59,7 +57,6 @@ export function OfferCard({ offer, onAccept, onReject }: OfferCardProps) {
           </div>
         </div>
 
-        {/* PRECIO */}
         <div className="text-right">
           <p className="text-[11px] text-[#004F62]/60">Propuesta</p>
           <p className="text-[#00A6C4] font-bold text-lg">
@@ -68,7 +65,6 @@ export function OfferCard({ offer, onAccept, onReject }: OfferCardProps) {
         </div>
       </div>
 
-      {/* VER MÁS */}
       <button
         onClick={() => setOpen(!open)}
         className="text-xs font-semibold text-[#00A6C4] underline"
@@ -76,7 +72,6 @@ export function OfferCard({ offer, onAccept, onReject }: OfferCardProps) {
         {open ? "Ver menos" : "Ver más"}
       </button>
 
-      {/* DETALLES */}
       {open && (
         <div className="mt-2 bg-[#F8FEFF] border border-[#00E8FF]/20 p-4 rounded-2xl space-y-3">
 
@@ -103,7 +98,6 @@ export function OfferCard({ offer, onAccept, onReject }: OfferCardProps) {
         </div>
       )}
 
-      {/* BOTONES */}
       <div className="flex gap-4 pt-2">
 
         <button
