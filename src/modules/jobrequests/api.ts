@@ -16,8 +16,18 @@ export async function createJobRequest(input: {
   description: string
   budget: number
   clientId: string
-  category?: string
+  categories?: string[]
 }): Promise<JobRequest> {
   const { data } = await api.post("/job-requests", input)
   return data
+}
+
+export async function listRelevantRequests(skills: string[]): Promise<JobRequest[]> {
+  const { data } = await api.get("/job-requests")
+
+  return data.filter((req: JobRequest) =>
+    req.categories?.some(cat =>
+      skills.includes(cat.toLowerCase())
+    )
+  )
 }

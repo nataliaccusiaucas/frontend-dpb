@@ -7,5 +7,5 @@ export type JobRequest = {
   clientId: string
   clientName: string
   createdAt: string
-  category?: string
+  categories: string[]
 }

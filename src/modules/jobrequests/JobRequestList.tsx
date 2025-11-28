@@ -19,7 +19,7 @@ export function JobRequestList() {
 
       <div className="flex items-center">
         <h1 className="text-4xl font-title font-bold text-[#003647]">
-          Solicitudes
+          Mis solicitudes
         </h1>
 
         <Link

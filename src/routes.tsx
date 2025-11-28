@@ -13,6 +13,7 @@ import { ProtectedRoute } from "./modules/auth/ProtectedRoute"
 import { JobRequestDetail } from "./modules/jobrequests/JobRequestDetail"
 import { JobRequestForm } from "./modules/jobrequests/JobRequestForm"
 import { JobRequestList} from "./modules/jobrequests/JobRequestList"
+import {FreelancerRequestsPage} from "./modules/jobrequests/FreelancerRequestsPage"
 
 import { OfferDetail } from "./modules/offers/OfferDetail"
 import { OfferForm } from "./modules/offers/OfferForm"
@@ -50,6 +51,7 @@ export const AppRoutes = () => {
           <Route path="/jobrequests" element={<JobRequestList />} />
           <Route path="/jobrequests/new" element={<JobRequestForm />} />
           <Route path="/jobrequests/:id" element={<JobRequestDetail />} />
+          <Route path="/requests-feed" element={<FreelancerRequestsPage/>}/>
 
           <Route path="/offers" element={<ClientOfferFeed />} />
           <Route path="/offers/new" element={<OfferForm />} />
