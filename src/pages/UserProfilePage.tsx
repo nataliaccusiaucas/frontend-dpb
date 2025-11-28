@@ -1,7 +1,9 @@
 import { useAuthRequired } from "../modules/auth/useAuthRequired"
 
 export function UserProfilePage() {
-  const user  = useAuthRequired()
+  const  user  = useAuthRequired()
+
+  if (!user) return <p className="text-center mt-20">Cargando...</p>
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-8 bg-white/80 rounded-3xl border border-[#00E8FF]/20">
@@ -15,3 +17,4 @@ export function UserProfilePage() {
     </div>
   )
 }
+
