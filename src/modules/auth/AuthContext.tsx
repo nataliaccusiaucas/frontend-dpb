@@ -12,7 +12,8 @@ export type AuthContextType = {
     email: string,
     password: string,
     role: "CLIENT" | "FREELANCER",
-    phone: string
+    phone: string,
+    skills: string[]
   ) => Promise<void>;
   logout: () => void;
 };
@@ -26,7 +27,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
   const [loading, setLoading] = useState(true);
 
-  // ---- RESTAURA SESIÓN ----
   useEffect(() => {
     const savedToken = localStorage.getItem("access_token");
     const savedUser = localStorage.getItem("user_data");
@@ -39,7 +39,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(false);
   }, []);
 
-  // ---- LOGIN ----
   async function login(email: string, password: string) {
     const { data } = await api.post("/auth/login", { email, password });
 
@@ -52,13 +51,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  // ---- REGISTER ----
   async function register(
     name: string,
     email: string,
     password: string,
     role: "CLIENT" | "FREELANCER",
-    phone: string
+    phone: string,
+    skills: string[] = []
   ) {
     const { data } = await api.post("/auth/register", {
       name,
@@ -66,17 +65,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       password,
       role,
       phone,
+      skills,
     });
 
     if (data.token && data.user) {
       localStorage.setItem("access_token", data.token);
       localStorage.setItem("user_data", JSON.stringify(data.user));
+
       setToken(data.token);
       setUser(data.user);
     }
   }
 
-  // ---- LOGOUT ----
   function logout() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user_data");

@@ -5,25 +5,43 @@ import { useAuth } from "./AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useToast } from "../../components/ui/Toaster";
 
-const schema = z.object({
-  name: z.string().min(2, "Nombre es obligatorio"),
-  email: z.string().email("Correo inválido"),
+const SKILLS = [
+  "Programación web",
+  "Móvil / Apps",
+  "Diseño gráfico",
+  "Marketing Digital",
+  "Community Manager",
+  "Data / Analytics",
+  "UX / UI",
+  "Copywriting",
+  "Otro",
+];
 
-  role: z
-  .enum(["CLIENT", "FREELANCER"] as const)
-  .refine((v) => v === "CLIENT" || v === "FREELANCER", {
-    message: "Selecciona un rol válido",
-  }),
-
-
-  phone: z.string().optional(),
-
-  password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
-  confirm: z.string(),
-}).refine((data) => data.password === data.confirm, {
-  path: ["confirm"],
-  message: "Las contraseñas no coinciden",
-});
+const schema = z
+  .object({
+    name: z.string().min(2, "Nombre es obligatorio"),
+    email: z.string().email("Correo inválido"),
+    role: z.enum(["CLIENT", "FREELANCER"]),
+    phone: z.string().optional(),
+    password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+    confirm: z.string(),
+    skills: z.array(z.string()).optional(),
+  })
+  .refine((data) => data.password === data.confirm, {
+    path: ["confirm"],
+    message: "Las contraseñas no coinciden",
+  })
+  .refine(
+    (data) =>
+      data.role === "CLIENT" ||
+      (data.role === "FREELANCER" &&
+        data.skills &&
+        data.skills.length > 0),
+    {
+      path: ["skills"],
+      message: "Selecciona al menos una habilidad si eres freelancer",
+    }
+  );
 
 type FormValues = z.infer<typeof schema>;
 
@@ -31,8 +49,15 @@ export function RegisterPage() {
   const {
     register: reg,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { skills: [] },
+  });
+
+  const selectedRole = watch("role");
 
   const { register: registerUser } = useAuth();
   const { toast } = useToast();
@@ -45,7 +70,8 @@ export function RegisterPage() {
         values.email,
         values.password,
         values.role,
-        values.phone ?? ""
+        values.phone ?? "",
+        values.skills ?? []
       );
 
       toast("Cuenta creada exitosamente");
@@ -77,6 +103,7 @@ export function RegisterPage() {
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
           <div>
             <label className="block text-sm text-[#004F62] mb-1">
               Nombre completo
@@ -85,9 +112,7 @@ export function RegisterPage() {
               className="w-full px-4 py-2 rounded-lg bg-white text-[#004F62] border border-gray-300"
               {...reg("name")}
             />
-            {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name.message}</p>
-            )}
+            {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
           </div>
 
           <div>
@@ -98,9 +123,7 @@ export function RegisterPage() {
               className="w-full px-4 py-2 rounded-lg bg-white text-[#004F62] border border-gray-300"
               {...reg("email")}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
-            )}
+            {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
           </div>
 
           <div>
@@ -115,10 +138,37 @@ export function RegisterPage() {
               <option value="CLIENT">Cliente (Solicita servicios)</option>
               <option value="FREELANCER">Freelancer (Ofrece servicios)</option>
             </select>
-            {errors.role && (
-              <p className="text-red-500 text-sm">{errors.role.message}</p>
-            )}
+            {errors.role && <p className="text-red-500 text-sm">{errors.role.message}</p>}
           </div>
+
+          {selectedRole === "FREELANCER" && (
+            <div>
+              <label className="block text-sm text-[#004F62] mb-1">
+                Habilidades del freelancer
+              </label>
+
+              <select
+                multiple
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 text-[#004F62] h-40"
+                onChange={(e) => {
+                  const selected = Array.from(e.target.selectedOptions).map(
+                    (o) => o.value
+                  );
+                  setValue("skills", selected, { shouldValidate: true });
+                }}
+              >
+                {SKILLS.map((skill) => (
+                  <option key={skill} value={skill}>
+                    {skill}
+                  </option>
+                ))}
+              </select>
+
+              {errors.skills && (
+                <p className="text-red-500 text-sm">{errors.skills.message}</p>
+              )}
+            </div>
+          )}
 
           <div>
             <label className="block text-sm text-[#004F62] mb-1">Teléfono</label>
